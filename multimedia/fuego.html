@@ -1,0 +1,1674 @@
+	<!DOCTYPE html>
+	<html lang="es">
+		<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+			
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<meta name="adjacent:publisher-key" content="78kRO5HDmhuFhYba9fZV68" />
+			<script src="//assets.adobedtm.com/0681c221600c/4dc966a27e04/launch-107b5c33fe4d.min.js" async></script>
+			<link rel="preconnect" href="//sdk.privacy-center.org">
+			<link rel="preconnect" href="//sdk-gcp.privacy-center.org">
+			<link rel="preload" as="script" href="https://cmp.prisa.com/dist/cmp.js">
+			<script src="https://amer.viaqoo.tech/tag/load.js?sid=104926" defer  charset="UTF-8" ></script>
+			<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v18.1 (Yoast SEO v18.3) - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Kiss anuncia nuevo concierto en Chile: Fecha y precio de las entradas</title><style id="rocket-critical-css">:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#5533ff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,::after,::before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%}article,aside,figcaption,figure,footer,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}h1,h2,h3,h4,h5{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}a{color:#53f;text-decoration:none;background-color:transparent}figure{margin:0 0 1rem}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}label{display:inline-block;margin-bottom:.5rem}button{border-radius:0}button,input{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button{text-transform:none}[type=button],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{padding:0;border-style:none}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}.h5,h1,h2,h3,h4,h5{margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:2.5rem}h2{font-size:2rem}h3{font-size:1.75rem}h4{font-size:1.5rem}.h5,h5{font-size:1.25rem}.list-inline{padding-left:0;list-style:none}.list-inline-item{display:inline-block}.list-inline-item:not(:last-child){margin-right:.5rem}.img-fluid{max-width:100%;height:auto}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.container-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.row{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.no-gutters{margin-right:0;margin-left:0}.no-gutters>[class*=col-]{padding-right:0;padding-left:0}.col,.col-12,.col-4,.col-8,.col-9,.col-md-10,.col-md-2,.col-md-3,.col-md-4,.col-md-8{position:relative;width:100%;padding-right:15px;padding-left:15px}.col{-webkit-flex-basis:0;-ms-flex-preferred-size:0;flex-basis:0;-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;max-width:100%}.col-4{-webkit-box-flex:0;-webkit-flex:0 0 33.33333%;-moz-box-flex:0;-ms-flex:0 0 33.33333%;flex:0 0 33.33333%;max-width:33.33333%}.col-8{-webkit-box-flex:0;-webkit-flex:0 0 66.66667%;-moz-box-flex:0;-ms-flex:0 0 66.66667%;flex:0 0 66.66667%;max-width:66.66667%}.col-9{-webkit-box-flex:0;-webkit-flex:0 0 75%;-moz-box-flex:0;-ms-flex:0 0 75%;flex:0 0 75%;max-width:75%}.col-12{-webkit-box-flex:0;-webkit-flex:0 0 100%;-moz-box-flex:0;-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}.order-0{-webkit-box-ordinal-group:1;-webkit-order:0;-moz-box-ordinal-group:1;-ms-flex-order:0;order:0}.order-1{-webkit-box-ordinal-group:2;-webkit-order:1;-moz-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-2{-webkit-box-ordinal-group:3;-webkit-order:2;-moz-box-ordinal-group:3;-ms-flex-order:2;order:2}@media (min-width:768px){.col-md-2{-webkit-box-flex:0;-webkit-flex:0 0 16.66667%;-moz-box-flex:0;-ms-flex:0 0 16.66667%;flex:0 0 16.66667%;max-width:16.66667%}.col-md-3{-webkit-box-flex:0;-webkit-flex:0 0 25%;-moz-box-flex:0;-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%}.col-md-4{-webkit-box-flex:0;-webkit-flex:0 0 33.33333%;-moz-box-flex:0;-ms-flex:0 0 33.33333%;flex:0 0 33.33333%;max-width:33.33333%}.col-md-8{-webkit-box-flex:0;-webkit-flex:0 0 66.66667%;-moz-box-flex:0;-ms-flex:0 0 66.66667%;flex:0 0 66.66667%;max-width:66.66667%}.col-md-10{-webkit-box-flex:0;-webkit-flex:0 0 83.33333%;-moz-box-flex:0;-ms-flex:0 0 83.33333%;flex:0 0 83.33333%;max-width:83.33333%}.order-md-1{-webkit-box-ordinal-group:2;-webkit-order:1;-moz-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-md-2{-webkit-box-ordinal-group:3;-webkit-order:2;-moz-box-ordinal-group:3;-ms-flex-order:2;order:2}}.form-control{display:block;width:100%;height:-moz-calc(1.5em + .75rem + 2px);height:calc(1.5em + .75rem + 2px);padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem}.form-control::-ms-expand{background-color:transparent;border:0}.form-control:-moz-focusring{color:transparent;text-shadow:0 0 0 #495057}.form-control::-webkit-input-placeholder{color:#6c757d;opacity:1}.form-control::-moz-placeholder{color:#6c757d;opacity:1}.form-control:-ms-input-placeholder{color:#6c757d;opacity:1}.form-control::-ms-input-placeholder{color:#6c757d;opacity:1}.form-row{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-5px;margin-left:-5px}.form-row>[class*=col-]{padding-right:5px;padding-left:5px}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem}.btn-primary{color:#fff;background-color:#53f;border-color:#53f}.btn-outline-warning{color:#ffc107;border-color:#ffc107}.btn-outline-light{color:#f8f9fa;border-color:#f8f9fa}.fade:not(.show){opacity:0}.input-group{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:stretch;-webkit-align-items:stretch;-moz-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;width:100%}.input-group>.form-control{position:relative;-webkit-box-flex:1;-webkit-flex:1 1 0%;-moz-box-flex:1;-ms-flex:1 1 0%;flex:1 1 0%;min-width:0;margin-bottom:0}.navbar{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:.5rem 1rem}.navbar-brand{display:inline-block;padding-top:.3125rem;padding-bottom:.3125rem;margin-right:1rem;font-size:1.25rem;line-height:inherit;white-space:nowrap}.navbar-collapse{-webkit-flex-basis:100%;-ms-flex-preferred-size:100%;flex-basis:100%;-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center}.navbar-toggler{padding:.25rem .75rem;font-size:1.25rem;line-height:1;background-color:transparent;border:1px solid transparent;border-radius:.25rem}@media (min-width:992px){.navbar-expand-lg{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-flow:row nowrap;-moz-box-orient:horizontal;-moz-box-direction:normal;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.navbar-expand-lg .navbar-collapse{display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:-ms-flexbox!important;display:flex!important;-webkit-flex-basis:auto;-ms-flex-preferred-size:auto;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.navbar-dark .navbar-brand{color:#fff}.navbar-dark .navbar-toggler{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.1)}.card{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;min-width:0;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:1px solid rgba(0,0,0,.125);border-radius:.25rem}.card-body{-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;min-height:1px;padding:1.25rem}.card-img-top{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;width:100%}.card-img-top{border-top-left-radius:-moz-calc(.25rem - 1px);border-top-left-radius:calc(.25rem - 1px);border-top-right-radius:-moz-calc(.25rem - 1px);border-top-right-radius:calc(.25rem - 1px)}.modal{position:fixed;top:0;left:0;z-index:1050;display:none;width:100%;height:100%;overflow:hidden;outline:0}.modal-dialog{position:relative;width:auto;margin:.5rem}.modal.fade .modal-dialog{-webkit-transform:translate(0,-50px);-moz-transform:translate(0,-50px);-ms-transform:translate(0,-50px);-o-transform:translate(0,-50px);transform:translate(0,-50px)}.modal-dialog-centered{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;min-height:-moz-calc(100% - 1rem);min-height:calc(100% - 1rem)}.modal-dialog-centered::before{display:block;height:-moz-calc(100vh - 1rem);height:calc(100vh - 1rem);content:""}.modal-content{position:relative;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%;background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,0,0,.2);border-radius:.3rem;outline:0}.modal-body{position:relative;-webkit-box-flex:1;-webkit-flex:1 1 auto;-moz-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;padding:1rem}@media (min-width:576px){.modal-dialog{max-width:500px;margin:1.75rem auto}.modal-dialog-centered{min-height:-moz-calc(100% - 3.5rem);min-height:calc(100% - 3.5rem)}.modal-dialog-centered::before{height:-moz-calc(100vh - 3.5rem);height:calc(100vh - 3.5rem)}}.rounded-0{border-radius:0!important}.d-none{display:none!important}.d-block{display:block!important}.d-flex{display:-webkit-box!important;display:-webkit-flex!important;display:-moz-box!important;display:-ms-flexbox!important;display:flex!important}@media (min-width:768px){.d-md-none{display:none!important}.d-md-block{display:block!important}}.flex-column{-webkit-box-orient:vertical!important;-webkit-box-direction:normal!important;-webkit-flex-direction:column!important;-moz-box-orient:vertical!important;-moz-box-direction:normal!important;-ms-flex-direction:column!important;flex-direction:column!important}.flex-wrap{-webkit-flex-wrap:wrap!important;-ms-flex-wrap:wrap!important;flex-wrap:wrap!important}.justify-content-center{-webkit-box-pack:center!important;-webkit-justify-content:center!important;-moz-box-pack:center!important;-ms-flex-pack:center!important;justify-content:center!important}.align-items-center{-webkit-box-align:center!important;-webkit-align-items:center!important;-moz-box-align:center!important;-ms-flex-align:center!important;align-items:center!important}.align-content-center{-webkit-align-content:center!important;-ms-flex-line-pack:center!important;align-content:center!important}.position-relative{position:relative!important}@supports ((position:-webkit-sticky) or (position:sticky)){.sticky-top{position:-webkit-sticky;position:sticky;top:0;z-index:1020}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.m-0{margin:0!important}.mb-2{margin-bottom:.5rem!important}.ml-2{margin-left:.5rem!important}.mt-3{margin-top:1rem!important}.mt-4{margin-top:1.5rem!important}.p-0{padding:0!important}.py-2{padding-top:.5rem!important}.px-2{padding-right:.5rem!important}.py-2{padding-bottom:.5rem!important}.px-2{padding-left:.5rem!important}.py-3{padding-top:1rem!important}.pr-3{padding-right:1rem!important}.py-3{padding-bottom:1rem!important}.mx-auto{margin-right:auto!important}.ml-auto,.mx-auto{margin-left:auto!important}.text-center{text-align:center!important}.text-uppercase{text-transform:uppercase!important}.font-weight-bold{font-weight:700!important}.font-italic{font-style:italic!important}.text-white{color:#fff!important}article img,figure,img,img.wp-post-image{max-width:100%;height:auto}.navbar-dark .navbar-brand a{color:#fff}.navbar h1{font-weight:400}.fa-2x{font-size:2em}.fa-stack{position:relative;display:inline-block;width:2em;height:2em;line-height:2em;vertical-align:middle}.fa-stack-1x,.fa-stack-2x{position:absolute;left:0;width:100%;text-align:center}.fa-stack-1x{line-height:inherit}.fa-stack-2x{font-size:2em}.fa-inverse{color:#fff}.fa-search:before{content:""}.fa-camera:before{content:""}.fa-twitter:before{content:""}.fa-facebook-f:before{content:""}.fa-envelope:before{content:""}.fa-circle:before{content:""}.fa-play-circle:before{content:""}.fa-youtube:before{content:""}.fa-instagram:before{content:""}.fa-spotify:before{content:""}.fa-whatsapp:before{content:""}.fa-user-plus:before{content:""}.fa-telegram:before{content:""}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.owl-carousel .owl-nav button.owl-next,.owl-carousel .owl-nav button.owl-prev{background:0 0;color:inherit;border:none;padding:0!important;font:inherit}.owl-theme .owl-nav{text-align:center}.owl-theme .owl-nav{margin-top:10px}.owl-theme .owl-nav [class*=owl-]{color:#FFF;font-size:14px;margin:5px;padding:4px 7px;background:#D6D6D6;display:inline-block;border-radius:3px}#pie-comun9 .inside{background:url(https://www.prisacom.com/comunes/piecomun-v9/imgs/piev9-2013_light.png?v2) no-repeat 0 0;border-top:1px solid #f0f0f0;padding:0;position:relative;width:993px;height:116px;margin:0 auto;position:relative;text-align:left;border-bottom:1px solid #D2D2D2}#pie-comun9 a{display:block;text-indent:-9999px;overflow:hidden;color:#000;text-decoration:none;text-align:left}#pie-comun9 .medios-destacados,#pie-comun9 .muestra-medios{float:left;width:auto;display:inline}#pie-comun9 .medios-destacados ul{margin-left:215px;width:775px;margin-top:5px;margin-bottom:0;overflow:hidden;padding:0}#pie-comun9 .medios-destacados ul.primerafila{padding-top:10px}#pie-comun9 .medios-destacados ul li{display:inline;float:left;background:none;margin:0 6px 0 0;padding:0}#pie-comun9 #pc_prisa{height:57px;left:18px;position:absolute;top:15px;width:144px}#pie-comun9 #pc_elpais{width:105px;height:25px}#pie-comun9 #pc_as{width:55px;height:25px}#pie-comun9 #pc_cincodias{width:90px;height:25px}#pie-comun9 #pc_santillana{width:100px;height:25px}#pie-comun9 #pc_clasificados{width:65px;height:25px}#pie-comun9 #pc_compartir{width:100px;height:25px}#pie-comun9 #pc_ser{width:60px;height:25px}#pie-comun9 #pc_los40{width:75px;height:25px}#pie-comun9 #pc_caracol{width:70px;height:25px}#pie-comun9 #pc_adn{width:65px;height:25px}#pie-comun9 #pc_wradio{width:51px;height:25px}#pie-comun9 #pc_continental{width:50px;height:25px}#pie-comun9 #pc_maxima{width:46px;height:25px}#pie-comun9 #pc_m80{width:60px;height:25px}#pie-comun9 #pc_dial{width:50px;height:25px}#pie-comun9 #pc_uno{width:52px;height:25px}#pie-comun9 #pc_icon{width:80px;height:25px}#pie-comun9 #pc_verne{width:70px;height:25px}#pie-comun9 #pc_plural{width:71px;height:25px}#pie-comun9 #pc_loqueleo{width:90px;height:25px}#pie-comun9 #pc_huffington{width:158px;height:25px}#pie-comun9 #pc_meristation{width:90px;height:25px}#pie-comun9 #pbt-medios{height:24px;left:18px;position:absolute;top:80px;width:143px}#pie-comun9 #pc_kebuena{width:82px;height:25px}#pie-comun9 #pc_podium{width:80px;height:25px}#pie-comun9 #pc_richmond{width:80px;height:25px}#pie-comun9 #pc_moderna{width:105px;height:25px}#pie-comun9 a#cierrame{background:url(https://www.prisacom.com/comunes/piecomun-v9/imgs/pc-bgs.gif) no-repeat 0 -22px;width:64px;height:21px;line-height:21px;overflow:hidden;display:block;text-indent:-9999px}#pie-comun9 #capa-webs-grupo{position:absolute;z-index:200;top:-271px;right:0}#pie-comun9 .muestra-medios{margin-top:40px;margin-left:25px;position:relative;font:400 12px Arial;color:#333}#pie-comun9 .muestra-medios a{text-indent:0}#pie-comun9 .muestra-medios .capa-medios{background:#e9e9e9 url(https://www.prisacom.com/comunes/piecomun-v9/imgs/pc-bgs.gif) repeat-x 0 -44px;height:311px;width:993px;display:none}#pie-comun9 .muestra-medios .capa-medios h3{padding:0 0 0 11px;font-weight:400;line-height:29px;margin:0}#pie-comun9 .cabecera-capa{padding:3px;border:1px solid #999;border-width:1px 1px 0;height:20px}#pie-comun9 .muestra-medios .cabecera-capa h3{float:left;line-height:20px;color:#000000}#pie-comun9 .cabecera-capa a{float:right}@media (max-width:993px){#pie-comun9 .inside{width:100%;border-top:1px solid #eee;border-bottom:1px solid #eee;background:url("https://www.prisacom.com/comunes/piecomun-v9/imgs/pie-responsive.png") no-repeat 50% 0}#pie-comun9 #pc_prisa{left:50%;margin-left:-72px}#pie-comun9 #pbt-medios{left:50%;margin-left:-71px}#pie-comun9 .medios-destacados>ul{display:none}#pie-comun9 #capa-webs-grupo,#pie-comun9 .muestra-medios .capa-medios,#pie-comun9 .muestra-medios .capa-medios iframe{width:100%}}body{font-family:'Roboto',sans-serif;background:#f5f5f5}h1,h2,h3{font-family:'Galano Grotesque';font-weight:700;text-transform:uppercase}h4,h5{font-family:'Galano Grotesque';font-weight:400}:focus{outline:0!important}a{color:#222}main{background:#f1f1f1;margin-bottom:39.3em;position:relative;z-index:10}div.space{top:10.5em}figure{margin:0}.social-top .fa-stack{font-size:1.3em}.search-bar{font-size:2em;color:#cac5bd;margin:0 .3em 0 0}.search-bar a{color:#cac5bd}.uu-prisa{position:absolute;z-index:1;font-size:0.8em;padding:5px 0 0 0;display:none}.uu-prisa li:first-child{position:relative}.uu-prisa li:first-child:after{content:'|';padding:0 0 0 10px;color:#ef7b01}.uu-prisa a{color:#ee7c00!important}.mpu{position:relative}.mpu:before{content:'publicidad';text-transform:uppercase;font-size:9px;color:#a7a7a7;position:absolute;font-family:'Galano Grotesque';top:-15px;left:0;right:0;text-align:center}.m-search{font-family:'Galano Grotesque';font-weight:600}.m-search .btn-primary{border-color:#EF7D00;font-weight:600}.social-top{position:absolute;top:0;right:2em}.social-top .svg-inline--fa.fa-stack-2x{height:1em!important;width:auto!important}.social-top li{font-size:.5em;margin:0 -5px}.btn-play{font-weight:600;border-radius:1em!important;font-size:.9em;padding:3px 10px!important;line-height:1.5!important;border:1px solid #fff!important;height:auto!important}.space-bar{top:42px;margin-bottom:42px}.bg-los40{background-color:#1D1D1B!important}.logo{padding:0}.los40-logo a span{display:block;width:12.85rem;height:4.1rem;background:url(https://los40.cl/wp-content/themes/los40cl/img/los40_dial_b.svg) center no-repeat;background-size:auto 4.9rem;text-indent:-9999px}.navbar{font-family:'Galano Grotesque';text-transform:uppercase}.online{font-weight:700}.fix-top{position:fixed!important;z-index:9999}.live-icon{display:inline-block;border-radius:50%;background:#f64338;width:10px;height:10px;animation:live 1s infinite;margin-top:8px;margin-right:5px}@keyframes live{0%,100%{background:none}50%{background:#f64338}}.share-single-mob{font-size:2em;color:#fff;top:80px}.share-single-mob .share-tw{background:#1da1f2}.share-single-mob .share-fb{background:#3b5998}.share-single-mob .share-ws{background:#25d366}.share-single-mob .share-tl{background:#08c}.share-single-mob .share-ms{background:#0084ff}.section-post-title{margin-top:1em}.section-post-title h1{font-size:1.4em;letter-spacing:5px;padding:1em 0;margin:0}.pink-bg,.pink-bg p{background-color:#E94734!important;color:#fff!important}.orange-bg{background-color:#EF7D00!important;color:#fff!important}.pink{color:#E94734}h1.blue{color:#4B55A1;border-top:1px solid #4B55A1}.blue{color:#4B55A1}.post-full{position:relative}.post-full img{object-fit:cover;object-position:top;height:400px;width:100%}.post-full h2{font-size:1.5em;text-align:center}.post-full h3{font-size:1.1em;text-transform:inherit;font-weight:400;text-align:center}footer{background:#f5f5f5;position:fixed;bottom:0;left:0;width:100%}.rrss-footer svg{color:#afafaf;font-size:1.5em}.footer-text{font-family:'Galano Grotesque';font-size:.7em;font-weight:100}#pie-comun9{background:#f1f1f1}.alaire{display:none;position:fixed;bottom:0;z-index:10001;background-color:#1D1D1B;width:100%;color:#fff;padding:.5em 0;box-shadow:1px -1px 5px 0 #222}.alaire .play svg{color:#fff;font-size:3.5em}.alaire h4.title{color:#fff;text-transform:uppercase;margin:0;font-size:1.1em}.alaire h3.programa{font-size:1.2em;color:#ffce01;text-align:center}.owl-theme .owl-nav{display:none}@media (max-width:575.98px){main{margin-bottom:32.3em}.los40-logo a span{display:block;width:8.85rem;height:4.1rem;background:url(https://los40.cl/wp-content/themes/los40cl/img/los40_dial_b.svg) center no-repeat;background-size:auto 3.2rem;text-indent:-9999px}.search-bar,#nav-icon2{display:block!important;font-size:1.3em}.space-bar{top:0;margin-bottom:0}.online button{font-size:12px;border:none}.logo h1{margin:0}.post-full img{height:100%;width:100%}.section-post-title{margin-top:1em}footer{padding-bottom:4em}}.offcanvas-collapse{position:fixed;top:0px;bottom:0;right:100%;left:-300px;width:300px;padding-right:1rem;padding-left:1rem;overflow-y:auto;visibility:hidden;background-color:#1D1D1B}.offcanvas-collapse{align-items:start;-moz-background-clip:padding;-webkit-background-clip:padding;background-clip:padding-box;border-right:5px solid rgb(211,83,26)}.navbar-dark .navbar-toggler{color:rgba(255,255,255,0);border-color:rgba(255,255,255,0)}.scroll-title{display:none;position:absolute;bottom:-30px;left:0;width:100%;height:auto}.scroll-title h2{text-align:center;color:#fff;font-size:1.1em;margin:0;padding:5px 0 5px 0}#nav-icon2{width:60px;height:45px;position:relative;margin:0;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}#nav-icon2{display:none}#nav-icon2 span{display:block;position:absolute;height:9px;width:50%;background:#f64338;opacity:1;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}#nav-icon2 span:nth-child(even){left:50%;border-radius:0 9px 9px 0}#nav-icon2 span:nth-child(odd){left:0px;border-radius:9px 0 0 9px}#nav-icon2 span:nth-child(1),#nav-icon2 span:nth-child(2){top:0px}#nav-icon2 span:nth-child(3),#nav-icon2 span:nth-child(4){top:18px}#nav-icon2 span:nth-child(5),#nav-icon2 span:nth-child(6){top:36px}.top-bar{width:100%;position:relative;background:#1D1D1B;border-bottom:2px solid #333;color:#fff;font-family:'Galano Grotesque';text-transform:uppercase;font-weight:600}.top-bar a{color:#fff}#menu-one li{display:inline-block;position:relative;padding-left:.5em;padding-right:.5em}#menu-one ul li ul{visibility:hidden;opacity:0;position:absolute;left:0;display:none;z-index:99999;background:#1D1D1B;padding-inline-start:0;padding:0 1em 0 1em}#menu-one ul li ul li{clear:both;width:max-content}.top-bar li{padding:.5em 0 .5em 0}#menu-two ul{list-style:none;padding:0}#menu-two li{margin:.5em 0 .5em 0}#menu-two a{color:#fff;font-family:'Galano Grotesque';font-weight:700}#menu-two ul.sub-menu{padding-left:40px}@media (max-width:575.98px){.top-bar{display:none}#nav-icon2 span:nth-child(3),#nav-icon2 span:nth-child(4){top:10px}#nav-icon2 span:nth-child(5),#nav-icon2 span:nth-child(6){top:20px}#nav-icon2 span:nth-child(even){left:30%;border-radius:0 9px 9px 0}#nav-icon2 span{display:block;position:absolute;height:5px;width:30%;background:#f64338;opacity:1;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}#nav-icon2{width:50px;height:30px;position:relative;margin:0px -25px 0em 0em;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg)}}.single{background:#fff}.post-full img{height:100%}.mpu{margin-left:auto}.meta-post-single{padding:2em 0 1em;text-align:center;margin:auto}.meta-post-single p{color:#828282;font-size:.9em;margin:0}.ldb{text-align:center;display:inline-flex}figcaption.photo-credit{position:absolute;bottom:0;color:#fff;width:100%;text-align:right;background:rgb(255,255,255);background:linear-gradient(180deg,rgba(255,255,255,0) 30%,rgb(0 0 0 / 91%) 100%);padding:1em 0.5em 0.5em 0em;font-size:0.7em}@media (max-width:575.98px){.single{padding:0}.scroll-title{display:none!important}}</style><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&#038;display=swap" /></noscript>
+	<meta name="description" content="La gira de despedida de los autores de “I Was Made for Lovin’ You” y “Rock and Roll All Nite” suma un segundo show en nuestro país" />
+	<link rel="canonical" href="https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" />
+	<meta property="og:locale" content="es_ES" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas" />
+	<meta property="og:description" content="La gira de despedida de los autores de “I Was Made for Lovin’ You” y “Rock and Roll All Nite” suma un segundo show en nuestro país" />
+	<meta property="og:url" content="https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" />
+	<meta property="og:site_name" content="LOS40 Chile" />
+	<meta property="article:publisher" content="https://www.facebook.com/Los40Chile/" />
+	<meta property="article:published_time" content="2022-03-14T18:46:15+00:00" />
+	<meta property="og:image" content="https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-600x315.jpg" />
+	<meta property="og:image:width" content="600" />
+	<meta property="og:image:height" content="315" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@40ChileOficial" />
+	<meta name="twitter:site" content="@40ChileOficial" />
+	<meta name="twitter:label1" content="Escrito por" />
+	<meta name="twitter:data1" content="Javier Sandoval" />
+	<meta name="twitter:label2" content="Tiempo de lectura" />
+	<meta name="twitter:data2" content="2 minutos" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://los40.cl/#organization","name":"LOS40 Chile","url":"https://los40.cl/","sameAs":["https://www.facebook.com/Los40Chile/","https://www.instagram.com/los40chile/","https://www.youtube.com/channel/UCdrMBPlRp8mzz1YWO1revxA","https://es.wikipedia.org/wiki/Los_40_(Chile)","https://twitter.com/40ChileOficial"],"logo":{"@type":"ImageObject","@id":"https://los40.cl/#logo","inLanguage":"es","url":"https://los40.cl/wp-content/uploads/2020/04/f65e202324f70f60ec093965347e5ee3.png","contentUrl":"https://los40.cl/wp-content/uploads/2020/04/f65e202324f70f60ec093965347e5ee3.png","width":433,"height":163,"caption":"LOS40 Chile"},"image":{"@id":"https://los40.cl/#logo"}},{"@type":"WebSite","@id":"https://los40.cl/#website","url":"https://los40.cl/","name":"LOS40 Chile","description":"101.7 FM","publisher":{"@id":"https://los40.cl/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://los40.cl/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"es"},{"@type":"ImageObject","@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#primaryimage","inLanguage":"es","url":"https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas.jpg","contentUrl":"https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas.jpg","width":1200,"height":675,"caption":"Kiss En Chile Entradas"},{"@type":"WebPage","@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#webpage","url":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html","name":"Kiss anuncia nuevo concierto en Chile: Fecha y precio de las entradas","isPartOf":{"@id":"https://los40.cl/#website"},"primaryImageOfPage":{"@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#primaryimage"},"datePublished":"2022-03-14T18:46:15+00:00","dateModified":"2022-03-14T18:46:15+00:00","description":"La gira de despedida de los autores de “I Was Made for Lovin’ You” y “Rock and Roll All Nite” suma un segundo show en nuestro país","breadcrumb":{"@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html"]}]},{"@type":"BreadcrumbList","@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Portada","item":"https://los40.cl/"},{"@type":"ListItem","position":2,"name":"Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas"}]},{"@type":"NewsArticle","@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#article","isPartOf":{"@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#webpage"},"author":{"@id":"https://los40.cl/#/schema/person/58731e60ca617f37530c2668ace4dbe1"},"headline":"Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas","datePublished":"2022-03-14T18:46:15+00:00","dateModified":"2022-03-14T18:46:15+00:00","mainEntityOfPage":{"@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#webpage"},"wordCount":412,"commentCount":0,"publisher":{"@id":"https://los40.cl/#organization"},"image":{"@id":"https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#primaryimage"},"thumbnailUrl":"https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas.jpg","keywords":["gene simmons","kiss","movistar arena"],"inLanguage":"es","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html#respond"]}],"copyrightYear":"2022","copyrightHolder":{"@id":"https://los40.cl/#organization"}},{"@type":"Person","@id":"https://los40.cl/#/schema/person/58731e60ca617f37530c2668ace4dbe1","name":"Javier Sandoval","image":{"@type":"ImageObject","@id":"https://los40.cl/#personlogo","inLanguage":"es","url":"https://secure.gravatar.com/avatar/f2548ad8cbee9e0e7e45ea147c951ef6?s=96&d=https%3A%2F%2Fiarc.dev%2Fapi%2Fimages%2F31b0da9e36a87a85e8172e8d57f3d9a5.jpg&r=g","contentUrl":"https://secure.gravatar.com/avatar/f2548ad8cbee9e0e7e45ea147c951ef6?s=96&d=https%3A%2F%2Fiarc.dev%2Fapi%2Fimages%2F31b0da9e36a87a85e8172e8d57f3d9a5.jpg&r=g","caption":"Javier Sandoval"},"url":"https://los40.cl/author/jsandoval"}]}</script>
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//prisamusicales.player-top.prisasd.com' />
+<link rel='dns-prefetch' href='//platform.twitter.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//www.prisacom.com' />
+<link rel='dns-prefetch' href='//api.iarc.dev' />
+<link rel='dns-prefetch' href='//ak-ads-ns.prisasd.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="LOS40 Chile &raquo; Feed" href="https://los40.cl/feed" />
+<link rel="alternate" type="application/rss+xml" title="LOS40 Chile &raquo; Feed de los comentarios" href="https://los40.cl/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="LOS40 Chile &raquo; Comentario Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas del feed" href="https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html/feed" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/theme.min.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/fonts/galano/stylesheet.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/fonts/lolla/stylesheet.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link rel='preload'   href='https://los40.cl/wp-content/themes/los40cl/vendor/owl/2.3.4/dist/assets/owl.carousel.min.css?ver=23.7.9.1647526930' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link rel='preload'   href='https://los40.cl/wp-content/themes/los40cl/vendor/owl/2.3.4/dist/assets/owl.theme.default.min.css?ver=23.7.9.1647526930' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/comunes/piecomun-v9/css/pie-comunes.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/main.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/menu.css?ver=1647526949' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<link data-minify="1" rel='preload'   href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/single.css?ver=1647526954' data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')"  type='text/css' media='all' />
+<style id='rocket-lazyload-inline-css' type='text/css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://los40.cl/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player{position:absolute;padding-bottom:0;width:100%;height:100%;top:0;bottom:0;left:0;right:0}
+</style>
+<script type='text/javascript' src='https://los40.cl/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://los40.cl/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js' defer></script>
+<script type='text/javascript' id='seo-automated-link-building-js-extra'>
+/* <![CDATA[ */
+var seoAutomatedLinkBuilding = {"ajaxUrl":"https:\/\/los40.cl\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/plugins/seo-automated-link-building/js/seo-automated-link-building.js?ver=1647526949' id='seo-automated-link-building-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://prisamusicales.player-top.prisasd.com/psdmedia/media/simple/js/SimpleMediaPlayer.min.js?ver=23.7.9.1584042094' id='playerprisa-scripts-js'></script>
+<script type='text/javascript' src='https://los40.cl/wp-content/themes/los40cl/vendor/owl/2.3.4/dist/owl.carousel.min.js?ver=23.7.9.1584042094' id='owl-scripts-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://los40.cl/wp-content/themes/los40cl/vendor/fontawesome/assets/js/all.min.js?ver=23.7.9.1584042094' id='aw-scripts-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/widgets.js?ver=1647526950' id='twitter-scripts-js' defer></script>
+<script type='text/javascript' id='my_loadmore-js-extra'>
+/* <![CDATA[ */
+var misha_loadmore_params = {"ajaxurl":"https:\/\/los40.cl\/wp-admin\/admin-ajax.php","posts":"{\"p\":110170,\"page\":0,\"year\":2022,\"name\":\"kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas\",\"error\":\"\",\"m\":\"\",\"post_parent\":\"\",\"subpost\":\"\",\"subpost_id\":\"\",\"attachment\":\"\",\"attachment_id\":0,\"pagename\":\"\",\"page_id\":0,\"second\":\"\",\"minute\":\"\",\"hour\":\"\",\"day\":0,\"monthnum\":0,\"w\":0,\"category_name\":\"\",\"tag\":\"\",\"cat\":\"\",\"tag_id\":\"\",\"author\":\"\",\"author_name\":\"\",\"feed\":\"\",\"tb\":\"\",\"paged\":0,\"meta_key\":\"\",\"meta_value\":\"\",\"preview\":\"\",\"s\":\"\",\"sentence\":\"\",\"title\":\"\",\"fields\":\"\",\"menu_order\":\"\",\"embed\":\"\",\"category__in\":[],\"category__not_in\":[],\"category__and\":[],\"post__in\":[],\"post__not_in\":[],\"post_name__in\":[],\"tag__in\":[],\"tag__not_in\":[],\"tag__and\":[],\"tag_slug__in\":[],\"tag_slug__and\":[],\"post_parent__in\":[],\"post_parent__not_in\":[],\"author__in\":[],\"author__not_in\":[],\"ignore_sticky_posts\":false,\"suppress_filters\":false,\"cache_results\":true,\"update_post_term_cache\":true,\"lazy_load_term_meta\":true,\"update_post_meta_cache\":true,\"post_type\":\"\",\"posts_per_page\":10,\"nopaging\":false,\"comments_per_page\":\"50\",\"no_found_rows\":false,\"order\":\"DESC\"}","current_page":"1","max_page":"0"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/archive.js?ver=1647526950' id='my_loadmore-js' defer></script>
+<link rel="https://api.w.org/" href="https://los40.cl/wp-json/" /><link rel="alternate" type="application/json" href="https://los40.cl/wp-json/wp/v2/posts/110170" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://los40.cl/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://los40.cl/wp-includes/wlwmanifest.xml" /> 
+
+<link rel='shortlink' href='https://los40.cl/?p=110170' />
+<link rel="alternate" type="application/json+oembed" href="https://los40.cl/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flos40.cl%2F2022%2Fkiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" />
+<link rel="alternate" type="text/xml+oembed" href="https://los40.cl/wp-json/oembed/1.0/embed?url=https%3A%2F%2Flos40.cl%2F2022%2Fkiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html&#038;format=xml" />
+
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-Regular.woff2" crossorigin>
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-Bold.woff2" crossorigin>
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-BoldItalic.woff2" crossorigin>
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-Light.woff2" crossorigin>
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-Italic.woff2" crossorigin>
+<link rel="preload" as="font" href="https://los40.cl/wp-content/themes/los40cl/fonts/galano/GalanoGrotesque-LightItalic.woff2" crossorigin><link rel="pingback" href="https://los40.cl/xmlrpc.php">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LOS40 Chile - 101.7 FM">
+      <meta name="onesignal" content="wordpress-plugin"/>
+            <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'OneSignalSDKUpdaterWorker.js';
+                      OneSignal.SERVICE_WORKER_PATH = 'OneSignalSDKWorker.js';
+                      OneSignal.SERVICE_WORKER_PARAM = { scope: '/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/push/onesignal/' };
+        OneSignal.setDefaultNotificationUrl("https://los40.cl");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = 'e016d7c2-b2ee-4011-8bd6-ea667dfd2560';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "";
+oneSignal_options['welcomeNotification']['message'] = "¡Gracias por suscribirte!";
+oneSignal_options['path'] = "https://los40.cl/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['promptOptions']['actionMessage'] = "¿Te gustaría recibir notificaciones de las últimas noticias de LOS40.cl?";
+oneSignal_options['promptOptions']['acceptButtonText'] = "Aceptar";
+oneSignal_options['promptOptions']['cancelButtonText'] = "Cancelar";
+                OneSignal.init(window._oneSignalInitOptions);
+                OneSignal.showSlidedownPrompt();      });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<link rel="amphtml" href="https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html/amp"><link rel="icon" href="https://los40.cl/wp-content/uploads/2020/05/178658bfc6190389c8c585b8c2259c84-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://los40.cl/wp-content/uploads/2020/05/178658bfc6190389c8c585b8c2259c84-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://los40.cl/wp-content/uploads/2020/05/178658bfc6190389c8c585b8c2259c84-180x180.png" />
+<meta name="msapplication-TileImage" content="https://los40.cl/wp-content/uploads/2020/05/178658bfc6190389c8c585b8c2259c84-270x270.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script>			
+			<script type="text/javascript"src="https://cmp.prisa.com/dist/cmp.js"></script>
+<script src="https://cdn.getadjacent.com/amd/ned-adjacent.min.js"></script>
+<!-- adjacent -->
+<script>
+
+     var googletag = googletag || {};
+     googletag.cmd = googletag.cmd || [];
+     googletag.cmd.push(function () {
+                          googletag.pubads().setTargeting('pbskey', ['110170','sin-categoria-a',]);
+                
+  });
+
+    (() => {
+
+        let adjacent = new Adjacent();
+        let width = window.screen.width;
+        adjacent.init().then((response) => {
+            window['ned-adjacent']['ned-ad'] = {
+                adUnit: (width >= 992 ? 'los40_web_cl/' : 'los40_mob_cl/') + 'musica-40'
+            };
+
+        });
+
+    })();
+
+  
+</script>
+
+
+
+<script id="navegg" type="text/javascript">
+  (function(n,v,g){o="Navegg";if(!n[o]){
+    a=v.createElement('script');a.src=g;b=document.getElementsByTagName('script')[0];
+    b.parentNode.insertBefore(a,b);n[o]=n[o]||function(parms){
+    n[o].q=n[o].q||[];n[o].q.push([this, parms])};}})
+  (window, document, 'https://tag.navdmp.com/universal.min.js');
+  window.naveggReady = window.naveggReady||[];
+  window.nvg78839 = new Navegg({
+    acc: 78839
+  });
+</script>
+<!-- <script type="rocketlazyloadscript">
+(function(s,t,a,n){s[t]||(s[t]=a,n=s[a]=function(){n.q.push(arguments)},
+n.q=[],n.v=2,n.l=1*new Date)})(window,"InstanaEumObject","ineum");
+
+ineum('reportingUrl', 'https://eum-blue-saas.instana.io');
+ineum('key', 'etr_6eNTSe6DRgEsqeXpJg');
+ineum('trackSessions');
+</script>
+<script defer crossorigin="anonymous" src="https://eum.instana.io/eum.min.js"></script> -->
+<script type='text/javascript'>
+(function() {
+var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
+_sf_async_config.uid = 66260;
+_sf_async_config.domain = 'www.los40.cl';
+_sf_async_config.useCanonical = true;
+_sf_async_config.useCanonicalDomain = true;
+_sf_async_config.sections = 'sin-categoria-a';
+_sf_async_config.authors = 'Javier Sandoval';
+function loadChartbeat() {
+var e = document.createElement('script');
+var n = document.getElementsByTagName('script')[0];
+e.type = 'text/javascript';
+e.async = true;
+e.src = '//static.chartbeat.com/js/chartbeat.js';
+n.parentNode.insertBefore(e, n);
+}
+loadChartbeat();
+})();
+</script>
+<script async src="//static.chartbeat.com/js/chartbeat_mab.js"></script>						<style type="text/css">
+				div[id*="-LDB"]>div>iframe {
+					margin: auto;
+				}
+			</style>
+		</head>
+		<body id="los40cl">
+			<!-- top bar -->
+			<div class="top-bar fix-top" id="top-bar">
+				<div class="container-fluid">
+					<div class="uu-prisa">
+						<ul class="list-inline">
+							<li class="list-inline-item">
+											<span class="primero" id="primero"><a href="#"><i class="fas fa-sign-in-alt"></i> </a></span>
+										</li>
+										<li class="list-inline-item">
+											<span class="segundo" id="segundo"><a href="#"><i class="fas fa-user-plus"></i> </a></span>
+										</li>
+						</ul>
+					</div>
+
+
+
+					<!-- /uu -->
+					<script src="//ep00.epimg.net/js/prisa/user.js?i=6"></script>
+                    										<script type="text/javascript">
+							var parametros = {
+							
+							perfil_url: "https://seguro.los40.cl/perfil",
+							registro_url: "https://seguro.los40.cl/registro",
+							desconexion_url: "https://seguro.los40.cl/desconectar",
+							identificacion_url: "https://seguro.los40.cl/conectar",
+							back_url: "d%2BclJK0Zu2fKtpcru6kKhS8qpHTdQhCqKcg7K1KlWWKwCRCSfmm9AsNgiZgkBwAr3fE2D7UypZOF2OsGJcZ6h2nHNn%2Fcawmsp%2F4s9VJ989OLjk4v7JeD%2BdUW01vvnu%2Bs%2BwxX0sI%2BIbbYD1lj1x87BQ%3D%3D",
+							
+							};
+					var divDatosPrimero = document.getElementById("primero");
+							var divDatosSegundo = document.getElementById("segundo");
+							var ud = PRISA.user.getData(); if(typeof(ud.nickname) != 'undefined') {
+							divDatosPrimero.innerHTML = '<a href="' + parametros.perfil_url + '" target="_blank"><i class="fas fa-user-alt"></i> MI PERFIL</a>';
+							divDatosSegundo.innerHTML = '<a href="' + parametros.desconexion_url + "?backURL=" + parametros.back_url + '">SALIR <i class="fas fa-sign-out-alt"></i></a>';
+							console.log('LOGEADO');
+							} else {
+								divDatosPrimero.innerHTML = '<a href="' + parametros.identificacion_url + "?backURL=" + parametros.back_url + '"><i class="fas fa-sign-in-alt"></i> ENTRAR</a>';
+							divDatosSegundo.innerHTML = '<a href="' + parametros.registro_url + "?backURL=" + parametros.back_url + '"><i class="fas fa-user-plus"></i> REGÍSTRATE</a>';
+							console.log('NO LOGEADO');
+							}
+							console.log('user uu:'+ud.nickname);
+					</script>
+
+					
+					<div class="col-12 text-center" id="menu-one">
+						<ul id="menu-main" class=" m-0 p-0"><li id="menu-item-193" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193 nav-item"><a href="https://los40.cl/inicio">Inicio</a></li>
+<li id="menu-item-194" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194 nav-item"><a href="https://los40.cl/programacion">Programación</a></li>
+<li id="menu-item-49" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49 nav-item"><a href="https://los40.cl/frecuencias">Frecuencias</a></li>
+<li id="menu-item-195" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-195 nav-item"><a target="_blank" rel="noopener" href="https://envivo.los40.cl/alacarta/">Podcast</a>
+<ul class="sub-menu">
+	<li id="menu-item-51402" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51402 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/category/podcast-ultravioleta">Ultravioleta</a></li>
+	<li id="menu-item-56009" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-56009 nav-item"><a target="_blank" rel="noopener" href="https://open.spotify.com/show/19VoWwVY11Gxw89xXtVcxR">Entrevistas LOS40</a></li>
+	<li id="menu-item-61086" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61086 nav-item"><a href="https://los40.cl/category/la-voz-de-los-40">La Voz de LOS40</a></li>
+	<li id="menu-item-61816" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61816 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/?s=TBT40">TBT40</a></li>
+	<li id="menu-item-51403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51403 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/?s=Los+Cuentos+del+Pececillo">Los Cuentos del Pececillo</a></li>
+</ul>
+</li>
+<li id="menu-item-196" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-has-children menu-item-196 nav-item"><a href="https://los40.cl/tipo_de_post/noticia">Noticias</a>
+<ul class="sub-menu">
+	<li id="menu-item-198" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-198 nav-item"><a href="https://los40.cl/tipo_de_post/musica-40">Musica40</a></li>
+	<li id="menu-item-199" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-199 nav-item"><a href="https://los40.cl/tipo_de_post/pantalla-40">Pantalla40</a></li>
+	<li id="menu-item-197" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-197 nav-item"><a href="https://los40.cl/tipo_de_post/40ymas">40yMás</a></li>
+	<li id="menu-item-65737" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65737 nav-item"><a href="https://los40.cl/tipo_de_post/mirada40">Mirada40</a></li>
+	<li id="menu-item-65738" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65738 nav-item"><a href="https://los40.cl/tipo_de_post/agenda40">Agenda40</a></li>
+	<li id="menu-item-65739" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65739 nav-item"><a href="https://los40.cl/tipo_de_post/musica-chilena">Música chilena</a></li>
+	<li id="menu-item-200" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-200 nav-item"><a href="https://los40.cl/tipo_de_post/tecnologia40">Tecnología40</a></li>
+	<li id="menu-item-65740" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65740 nav-item"><a href="https://los40.cl/tipo_de_post/estilo40">Estilo40</a></li>
+	<li id="menu-item-65741" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65741 nav-item"><a href="https://los40.cl/tipo_de_post/deportes40">Deportes40</a></li>
+</ul>
+</li>
+<li id="menu-item-33683" class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-33683 nav-item"><a href="https://los40.cl/tipo_de_post/concursos">Concursos</a></li>
+<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50 nav-item"><a href="https://los40.cl/lista-los-40">Lista Los40</a></li>
+</ul>					</div>
+					
+					<div class="social-top">
+						<ul class="list-inline text-center mx-auto">
+																					<!--  <li class="list-inline-item buscador-top">
+								<a href="#" data-toggle="modal" data-target="#ModalSearch">
+									<span class="fa-stack fa-2x" style="color:#616161!important;">
+												<i class="fas fa-circle fa-stack-2x"></i>
+												<i class="fas fa-search fa-stack-1x fa-inverse"></i>
+											</span>
+								</a>
+							</li> -->
+														<li class="list-inline-item">
+								<a href="https://wa.me/56958792865" target="_blank" rel="nofollow" title="Escríbenos por Whatsapp">
+									<span class="fa-stack fa-2x" style="color:#25d366!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://www.instagram.com/los40chile/" target="_blank" rel="nofollow" title="Síguenos en Instagram">
+									<span class="fa-stack fa-2x" style="color:#e1306c!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://open.spotify.com/user/los40oficial" target="_blank" rel="nofollow" title="Síguenos en Spotify">
+									<span class="fa-stack fa-2x" style="color:#1db954!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-spotify fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://www.tiktok.com/@los40chile" target="_blank" rel="nofollow" title="Síguenos en TikTok">
+									<span class="fa-stack fa-2x" style="color:#69c9d0!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-tiktok fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://www.youtube.com/channel/UCdrMBPlRp8mzz1YWO1revxA" target="_blank" rel="nofollow" title="Síguenos en Youtube">
+									<span class="fa-stack fa-2x" style="color:#ff0000!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://twitter.com/40ChileOficial/" target="_blank" rel="nofollow" title="Síguenos en Twitter">
+									<span class="fa-stack fa-2x" style="color:#1da1f2!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="https://www.facebook.com/Los40Chile/" target="_blank" rel="nofollow" title="Síguenos en Facebook">
+									<span class="fa-stack fa-2x" style="color:#1877f2!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																												<li class="list-inline-item">
+								<a href="mailto:contacto@los40.cl" target="_blank" rel="nofollow" title="Escríbenos a nuestro correo">
+									<span class="fa-stack fa-2x" style="color:#bfbfbf!important">
+										<i class="fas fa-circle fa-stack-2x"></i>
+										<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+																				</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /top bar -->
+			<!--  START NAVBAR   -->
+			<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-los40 navbar-offcanvas space-bar" id="navbar">
+				<!-- <a class="navbar-brand mr-auto" href="#">Offcanvas navbar - toggle always visible</a> -->
+				<!-- online  -->
+				<div class="online d-md-block d-none">
+					<a href="https://envivo.los40.cl/" rel="noopener noreferrer" target="_blank">
+						<button type="button" class="btn btn-outline-light btn-play text-uppercase play-desk" data-toggle="tooltip" data-placement="bottom" title=""><i class="live-icon ml-auto"></i><span id="programa-alaire">Cargando...</span></button>
+					</a>
+				</div>
+				<div class="online d-block d-md-none">
+					<a href="https://envivo.los40.cl/" rel="noopener noreferrer" target="_blank">
+						<button type="button" class="btn btn-outline-warning btn-play text-uppercase"><i class="live-icon ml-auto"></i> En vivo</button>
+					</a>
+				</div>
+				<!-- /online  -->
+				<!--  logo  -->
+				<div class="logo navbar-brand mx-auto">
+					<h1 class="los40-logo">
+					<a href="https://los40.cl">
+						<span>LOS40 Chile</span>
+					</a>
+					</h1>
+				</div>
+				<!-- /logo -->
+				
+				
+				<!--      This toggle button is always visible  -->
+				<div class="search-bar">
+					<a href="#" data-toggle="modal" data-target="#ModalSearch">
+						<i class="fas fa-search"></i>
+					</a>
+				</div>
+				<button class="navbar-toggler d-block" type="button" id="navToggle">
+				<div id="nav-icon2">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				</button>
+				<div class="navbar-collapse offcanvas-collapse" id="menu-two">
+					<ul id="menu-main-1" class=" m-0 p-0"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-193 nav-item"><a href="https://los40.cl/inicio">Inicio</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194 nav-item"><a href="https://los40.cl/programacion">Programación</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49 nav-item"><a href="https://los40.cl/frecuencias">Frecuencias</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-195 nav-item"><a target="_blank" rel="noopener" href="https://envivo.los40.cl/alacarta/">Podcast</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51402 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/category/podcast-ultravioleta">Ultravioleta</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-56009 nav-item"><a target="_blank" rel="noopener" href="https://open.spotify.com/show/19VoWwVY11Gxw89xXtVcxR">Entrevistas LOS40</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61086 nav-item"><a href="https://los40.cl/category/la-voz-de-los-40">La Voz de LOS40</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-61816 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/?s=TBT40">TBT40</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-51403 nav-item"><a target="_blank" rel="noopener" href="https://los40.cl/?s=Los+Cuentos+del+Pececillo">Los Cuentos del Pececillo</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-has-children menu-item-196 nav-item"><a href="https://los40.cl/tipo_de_post/noticia">Noticias</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-198 nav-item"><a href="https://los40.cl/tipo_de_post/musica-40">Musica40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-199 nav-item"><a href="https://los40.cl/tipo_de_post/pantalla-40">Pantalla40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-197 nav-item"><a href="https://los40.cl/tipo_de_post/40ymas">40yMás</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65737 nav-item"><a href="https://los40.cl/tipo_de_post/mirada40">Mirada40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65738 nav-item"><a href="https://los40.cl/tipo_de_post/agenda40">Agenda40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65739 nav-item"><a href="https://los40.cl/tipo_de_post/musica-chilena">Música chilena</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-200 nav-item"><a href="https://los40.cl/tipo_de_post/tecnologia40">Tecnología40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65740 nav-item"><a href="https://los40.cl/tipo_de_post/estilo40">Estilo40</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-65741 nav-item"><a href="https://los40.cl/tipo_de_post/deportes40">Deportes40</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-tipo_de_post menu-item-33683 nav-item"><a href="https://los40.cl/tipo_de_post/concursos">Concursos</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50 nav-item"><a href="https://los40.cl/lista-los-40">Lista Los40</a></li>
+</ul>					
+					
+				</div>
+				
+								<!-- scroll title -->
+				<!-- <section class="scroll-title single-meta">
+										<h2>Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas</h2>
+									</section> -->
+				<!-- /scrol. title -->
+								
+			</nav>
+			<!--  END NAVBAR   -->
+			<main id="main-los40">
+								
+								<section class="ad mx-auto text-center py-3 d-block d-md-none">
+					<ned-ad ad-name="ad-mldb1" ad-jacent></ned-ad>
+				</section>
+				<section class="ad mx-auto text-center py-3 d-md-block d-none">
+					<ned-ad ad-name="ad-ldb1" ad-jacent></ned-ad>
+				</section>
+				<div id="stream-home" class="mb-2"></div>
+  
+    
+  <!--  section single main -->
+    <section class="container single py-3" id="single-post">
+      <div class="row">
+
+			
+          <!-- article single -->
+<article class=" col-md-8  post-full d-flex flex-column " id="post-110170">
+	
+	<!-- single tag -->
+	<div class="order-0">
+		<div class="section-post-title text-center">
+												<a href="https://los40.cl/tipo_de_post/musica-40/">
+				<h1 id="single-tag">Musica40</h1>
+			</a>
+											</div>
+	</div>
+	<!-- single tag -->
+	
+	<!-- feat img -->
+	<figure class="order-2 order-md-1 position-relative">
+		<img width="640" height="360" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20360'%3E%3C/svg%3E" class="img-fluid feat-img wp-post-image" alt="Kiss En Chile Entradas" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas.jpg 1200w" data-lazy-sizes="(max-width: 640px) 100vw, 640px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-1024x576.jpg" /><noscript><img width="640" height="360" src="https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-1024x576.jpg" class="img-fluid feat-img wp-post-image" alt="Kiss En Chile Entradas" srcset="https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/kiss-en-chile-entradas.jpg 1200w" sizes="(max-width: 640px) 100vw, 640px" /></noscript>				<figcaption class="photo-credit">
+		<i class="fas fa-camera"></i> Getty		</figcaption>
+			</figure>
+	<!-- /feat img -->
+	<!-- single-meta -->
+	<div class=" single-meta  align-content-center flex-wrap order-1 order-md-2">
+		<div class="py-2 px-2">
+			<h2>Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas</h2>			<h3>La gira de despedida de los autores de “I Was Made for Lovin’ You” y “Rock and Roll All Nite” suma un segundo show en nuestro país</h3>
+		</div>
+		<div class="meta-post-single">
+			
+			<div class="">
+				<a href="https://los40.cl/author/jsandoval">
+					<p >Por Javier Sandoval</p>
+				</a>
+							</div>
+			
+			
+			
+			
+			<div class="ml-auto"><time>14/03/2022</time></div>
+		</div>
+	</div>
+	<!-- /single-meta -->
+	<!-- share single desk -->
+	
+	<div class="share-single-mob d-block d-md-none sticky-top order-2">
+		<div class="container">
+			<div class="row">
+				<div class="col mx-auto text-center share-ws">
+					<a href="whatsapp://send?text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas –– https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" data-action="share/whatsapp/share" class="text-white">
+						<i class="fab fa-whatsapp"></i>
+					</a>
+				</div>
+				<div class="col mx-auto text-center share-ms">
+					<a href="fb-messenger://share/?link=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html&app_id=250823081710783" target="_blank" class="text-white">
+						<i class="fab fa-facebook-messenger"></i>
+					</a>
+				</div>
+				
+				
+				<div class="col mx-auto text-center share-tl">
+					<a href="https://telegram.me/share/url?url=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html&text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas" target="_blank" class="text-white">
+						<i class="fab fa-telegram"></i>
+					</a>
+				</div>
+				<div class="col mx-auto text-center share-tw">
+					<a href="https://twitter.com/share?text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas&url=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" target="_blank" class="text-white">
+						<i class="fab fa-twitter"></i>
+					</a>
+				</div>
+				<div class="col mx-auto text-center share-fb">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" target="_blank" class="text-white">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- /share single desk -->
+  
+  <div class="d-block d-md-none order-2 mt-3">
+	<ned-ad ad-name="ad-mpu1" ad-jacent></ned-ad>
+	</div>
+
+
+
+		<!-- single content -->
+	<div class="single-content order-3">
+	<div class="mx-auto  mt-3 w-90 reading-single" id="single-content">
+				<p>¡Atención, fanáticos y fanáticas del rock! Este lunes, ha sido confirmado un segundo concierto de la banda Kiss en Chile, el que será enmarcado por su gira de despedida titulada “End of the Road”.</p>
+<p>La agrupación, originalmente, sólo iba a contar con un recital para el miércoles 20 de abril en el Movistar Arena. Sin embargo, estas entradas de acabaron rápidamente, dejando a muchos fans con las ganas de ver en vivo a los autores de temas como “I Was Made for Lovin’ You”; “Rock and Roll All Nite”; “I Love It Loud” y “Heaven’s on Fire”.</p>
+<p>Por lo mismo, esta semana la partimos con un tremendo notición donde Kiss confirmó otro show en nuestro país.</p><div class="related-los40-single" data-number="3" data-single="110165" data-image="https://los40.cl/wp-content/uploads/2022/03/shingeki-no-kyojin-memes-capitulo-85-traidor-150x150.jpg" data-url="https://los40.cl/2022/titan-hembra-y-acorazado-de-vuelta-los-memes-y-reacciones-que-dejo-el-episodio-85-de-shingeki-no-kyojin-110165.html" data-title="¡Titán hembra y acorazado de vuelta! Los memes y reacciones que dejó el episodio 85 de Shingeki no Kyojin" data-desc="El episodio estrenado el domingo titulado “Traidor” tuvo como grandes protagonistas a Connie, Armin, Annie y Reiner"></div>
+<h2>Kiss suma concierto en Chile: Coordenadas</h2>
+<p>A su show antes mencionado, ahora hay que sumar otro, el que se realizará un día antes.</p>
+<p>Bajo esto, el martes 19 de abril tendremos otro concierto de Kiss en Chile, el que también se realizará en el Movistar Arena de la Región Metropolitana.</p>
+<p>Las entradas estarán a la venta a partir del 16 de marzo de este año a las 11 de la mañana, a través del sistema Punto Ticket.</p>
+<p>Eso sí, mucha atención, porque quienes tengan entrada para su primer concierto tendrán un 20% de descuento en este segundo evento.</p><div class="related-los40-single" data-number="7" data-single="110177" data-image="https://los40.cl/wp-content/uploads/2022/03/carta-astral-150x150.jpg" data-url="https://los40.cl/2022/que-es-la-carta-astral-y-por-que-es-noticia-110177.html" data-title="¿Qué es la carta astral y por qué es noticia?" data-desc="El Registro Civil notificó la inclusión del cálculo de la carta astral para descargar un documento, despertando la curiosidad del público."></div>
+<p>Los precios de las entradas los puedes ver aquí:</p>
+<img class="size-full wp-image-110175" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201080%201080'%3E%3C/svg%3E" alt="KISS_square_precios_actualizado Grande" width="1080" height="1080" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande.jpg 1080w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-300x300.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-1024x1024.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-150x150.jpg 150w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-768x768.jpg 768w" data-lazy-sizes="(max-width: 1080px) 100vw, 1080px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande.jpg" /><noscript><img class="size-full wp-image-110175" src="https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande.jpg" alt="KISS_square_precios_actualizado Grande" width="1080" height="1080" srcset="https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande.jpg 1080w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-300x300.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-1024x1024.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-150x150.jpg 150w, https://los40.cl/wp-content/uploads/2022/03/KISS_square_precios_actualizado-Grande-768x768.jpg 768w" sizes="(max-width: 1080px) 100vw, 1080px" /></noscript>
+<h2>La banda</h2>
+<p>La agrupación nació en 1972 y no sólo ha sabido cómo dejar grandes temas para la historia, sino que también ha sido escuela, inspirando a otras agrupaciones de rock y metal como Iron Maiden, Metallica, Megadeth, Motley Crue y Pearl Jam.</p>
+<p>Lo que más ha impactado sobre Kiss entre la audiencia ha sido su propuesta audiovisual, la que se ha convertido en uno de los íconos más importantes de la música y de la cultura popular en todo el orbe.</p>
+<p>El tour «End of the Road» es la gira más impresionante de toda la historia de Kiss, con shows que incluyen grandiosos sistemas de iluminación y sonido, junto con sus característicos fuegos artificiales, que elevan estos conciertos a niveles poco antes vistos por sus seguidores de todas las edades, que podrán ver a la agrupación este 19 y 20 de abril en las que serán sus últimas presentaciones en Chile.</p>
+<p><div class="rll-youtube-player" data-src="https://www.youtube.com/embed/ZhIsAZO5gl0" data-id="ZhIsAZO5gl0" data-query=""></div><noscript><iframe title="YouTube video player" src="https://www.youtube.com/embed/ZhIsAZO5gl0" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></noscript></p>
+</p>
+<!-- Concursos  UU -->
+
+<!-- /Concursos  UU -->
+
+
+
+
+</div>
+ <div class="reading-button d-md-none d-block mx-auto text-center mb-5">
+      <a href="#" class="js-remove-article-height text-decoration-none">
+        <button type="button" class="btn btn-primary d-block m-auto rounded-0 btn-lg text-decoration-none text-uppercase">Seguir leyendo</button>
+      </a>
+  </div>
+</div>
+
+
+
+ 
+
+<!-- /single content -->
+<!-- share single desk -->
+<div class="share-single-desk order-4 d-md-block d-none">
+<div class="container">
+	<div class="row">
+		<div class="col mx-auto text-center share-ws">
+			<a href="whatsapp://send?text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas –– https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" data-action="share/whatsapp/share" class="text-white">
+				<i class="fab fa-whatsapp"></i>
+			</a>
+		</div>
+		<div class="col mx-auto text-center share-ms">
+			<a href="https://www.facebook.com/dialog/send?app_id=250823081710783&amp;link=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html&amp;redirect_uri=https://los40.cl" target="_blank" class="text-white">
+				<i class="fab fa-facebook-messenger"></i>
+			</a>
+		</div>
+		<div class="col mx-auto text-center share-tl">
+			<a href="https://telegram.me/share/url?url=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html&text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas" target="_blank" class="text-white">
+				<i class="fab fa-telegram"></i>
+			</a>
+		</div>
+		<div class="col mx-auto text-center share-tw">
+			<a href="https://twitter.com/share?text=Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas&url=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" target="_blank" class="text-white">
+				<i class="fab fa-twitter"></i>
+			</a>
+		</div>
+		<div class="col mx-auto text-center share-fb">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" target="_blank" class="text-white">
+				<i class="fab fa-facebook-f"></i>
+			</a>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<!-- /share single desk -->
+</article>
+
+
+
+
+
+
+
+	<div class="d-block d-md-none mt-5 text-center mx-auto">
+	<ned-ad ad-name="ad-mpu2" ad-jacent></ned-ad>
+	</div>
+
+
+<!-- /article single -->
+<!-- single aside -->
+<aside class="col-md-4 ">
+<div class="row sticky-top space text-center mx-auto">
+<!--  mpu -->
+<div class="d-md-block d-none mb-3">
+	<ned-ad ad-name="ad-mpu1" ad-jacent></ned-ad>
+</div>
+<div class="d-md-block d-none mb-3">
+	<ned-ad ad-name="ad-mpu2" ad-jacent></ned-ad>
+</div>
+<div class="d-md-block d-none mb-3">
+	<ned-ad ad-name="ad-mpu3" ad-jacent></ned-ad>
+</div>
+<!-- / mpu -->
+</div>
+</div>
+</aside>
+<!-- single aside -->
+
+
+			
+
+			    
+         
+    <!--  /section single main -->
+
+  
+    
+<!--  last post -->
+<div class="post-section">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center section-post-title">
+				<a href="https://los40.cl/tipo_de_post/noticia/">
+				<h1 class="blue">Lo más reciente</h1>
+			    </a>
+			</div>
+		</div>
+		<div class="row no-gutters">
+						
+			<!-- post col 3 -->
+			<div class="col-md-3  post-col col-x4">
+				
+					<figure>
+						<a href="https://los40.cl/2022/como-estara-el-tiempo-en-cerrillos-los-tres-dias-de-lollapalooza-chile-2022-110459.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Tiempo Cerrillos Lollapalooza Miley Cyrus Doja Cat Viernes Sabado Domingo" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-300x169.jpg" class="img-fluid wp-post-image" alt="Tiempo Cerrillos Lollapalooza Miley Cyrus Doja Cat Viernes Sabado Domingo" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/tiempo-cerrillos-lollapalooza-miley-cyrus-doja-cat-viernes-sabado-domingo.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption  class="blue-bg" >
+							<!-- tag -->
+							<span class="tag-single  blue2-bg "><h3>40yMás</h3></span>
+							<!-- title -->
+							<h2>Cómo estará el tiempo en Cerrillos los 3 días de Lollapalooza Chile 2022</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Javier Sandoval</p></div>
+								<div class="ml-auto"><time>17/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+			<!-- post col 3 -->
+			
+			
+												
+			<!-- post col 3 -->
+			<div class="col-md-3  col-6  post-col col-x4">
+				
+					<figure>
+						<a href="https://los40.cl/2022/panoramas-para-disfrutar-este-st-patricks-day-110467.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="St. Patrick’s Day (1)" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-300x169.jpg" class="img-fluid wp-post-image" alt="St. Patrick’s Day (1)" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/St.-Patricks-Day-1.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption >
+							<!-- tag -->
+							<span class="tag-single  blue-bg "><h3>40yMás</h3></span>
+							<!-- title -->
+							<h2>¡Panoramas para disfrutar este St. Patrick’s Day!</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Pascale Quililongo</p></div>
+								<div class="ml-auto"><time>17/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+			<!-- post col 3 -->
+			
+			
+												
+			<!-- post col 3 -->
+			<div class="col-md-3  col-6  post-col col-x4">
+				
+					<figure>
+						<a href="https://los40.cl/2022/estudiantes-marchan-al-mineduc-ante-casos-de-violencia-sexual-110472.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Estudiantes Secundarias Marchan Al Mineduc Ante Casos De Violencia Sexual" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-300x169.jpg" class="img-fluid wp-post-image" alt="Estudiantes Secundarias Marchan Al Mineduc Ante Casos De Violencia Sexual" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/Estudiantes-secundarias-marchan-al-Mineduc-ante-casos-de-violencia-sexual.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption  class="blue-bg" >
+							<!-- tag -->
+							<span class="tag-single  blue2-bg "><h3>Mirada40</h3></span>
+							<!-- title -->
+							<h2>Estudiantes marchan al Mineduc ante casos de violencia sexual</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Javier Sandoval</p></div>
+								<div class="ml-auto"><time>17/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+			<!-- post col 3 -->
+			
+			
+												
+			<!-- post col 3 -->
+			<div class="col-md-3  post-col col-x4">
+				
+					<figure>
+						<a href="https://los40.cl/2022/omg-aap-rocky-vendra-con-rihanna-a-lollapalooza-chile-2022-110430.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="¿A$AP Rocky vendrá con Rihanna a Lollapalooza Chile?" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-300x169.jpg" class="img-fluid wp-post-image" alt="¿A$AP Rocky vendrá con Rihanna a Lollapalooza Chile?" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/GZ6DF2ANJ5GMBONS5WZ2BX7UUE.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption >
+							<!-- tag -->
+							<span class="tag-single  blue-bg "><h3>40yMás</h3></span>
+							<!-- title -->
+							<h2>¿A$AP Rocky vendrá con Rihanna a Lollapalooza Chile 2022?</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Xava Sierra</p></div>
+								<div class="ml-auto"><time>17/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+			<!-- post col 3 -->
+			
+			
+															
+		</div>
+	</div>
+</div>
+<!--  /last post -->
+<!-- ldb -->
+<div class="col-md-12 mt-3 text-center mx-auto">
+	<ned-ad ad-name="ad-ldb2" ad-jacent></ned-ad>
+</div>
+<!-- /ldb -->
+<!--  related post -->
+<div class="post-section">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center section-post-title">
+				<a href="https://los40.cl/tipo_de_post/musica-40/">
+				<h1 class="orange">+ En Musica40</h1>
+			    </a>
+			</div>
+		</div>
+		<div class="row">
+						
+			<!-- post col 3 -->
+			<div class="col-md-4 post-col">
+				
+					<figure>
+						<a href="https://los40.cl/2022/por-que-bad-bunny-esta-siendo-acusado-de-plagio-por-missy-elliot-110330.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="¿Por qué Bad Bunny está siendo acusado de plagio por Missy Elliot?" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-300x169.png 300w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-1024x576.png 1024w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-768x432.png 768w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito.png 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-300x169.png" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-300x169.png" class="img-fluid wp-post-image" alt="¿Por qué Bad Bunny está siendo acusado de plagio por Missy Elliot?" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-300x169.png 300w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-1024x576.png 1024w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito-768x432.png 768w, https://los40.cl/wp-content/uploads/2022/03/bad-bunnito.png 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption >
+							<!-- title -->
+							<h2>¿Por qué Bad Bunny está siendo acusado de plagio por Missy Elliot?</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Xava Sierra</p></div>
+								<div class="ml-auto"><time>16/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+												
+			<!-- post col 3 -->
+			<div class="col-md-4 post-col">
+				
+					<figure>
+						<a href="https://los40.cl/2022/cuanto-costaban-las-entradas-para-el-primer-lollapalooza-chile-110405.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Lollapalooza 2011" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-300x169.jpg" class="img-fluid wp-post-image" alt="Lollapalooza 2011" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/Lollapalooza-2011.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption  class="orange-bg" >
+							<!-- title -->
+							<h2>¿Cuánto costaban las entradas para el primer Lollapalooza Chile?</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Pascale Quililongo</p></div>
+								<div class="ml-auto"><time>16/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+												
+			<!-- post col 3 -->
+			<div class="col-md-4 post-col">
+				
+					<figure>
+						<a href="https://los40.cl/2022/desde-freaks-hasta-notables-5-grandes-momentos-vividos-en-lollapalooza-110396.html">
+							<img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Momentos Freaks Lollapalooza Chile" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-300x169.jpg" class="img-fluid wp-post-image" alt="Momentos Freaks Lollapalooza Chile" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/03/momentos-freaks-lollapalooza-chile.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							<figcaption >
+							<!-- title -->
+							<h2>Desde freaks hasta notables: 5 grandes momentos vividos en Lollapalooza</h2>
+							<!-- metapost -->
+							<div class="meta-post d-flex">
+								<div><p>Javier Sandoval</p></div>
+								<div class="ml-auto"><time>16/03/2022</time></div>
+							</div>
+							</figcaption>
+						</a>
+					</figure>
+				
+			</div>
+															
+		</div>
+	</div>
+</div>
+<!--  /related post -->
+<!-- ldb -->
+<div class="col-md-12 mt-3 text-center mx-auto">
+		<ned-ad ad-name="ad-ldb3" ad-jacent></ned-ad>
+</div>
+<!-- /ldb -->
+<!-- en portada -->
+<div class="post-section">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center section-post-title">
+				<a href="https://los40.cl">
+				<h1 class="pink">En portada</h1>
+			    </a>
+			</div>
+		</div>
+						<!--  row post full  -->
+		<div class="row">
+			<div class="col-12 post-full">
+				<div class="row no-gutters">
+					
+					<!-- img feat -->
+					<div class="col-md-7">
+						<a href="https://los40.cl/2022/netflix-implementara-cobro-extra-para-quienes-compartan-su-contrasena-con-personas-que-no-vivan-juntas-110398.html">
+							 <img width="768" height="432" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%20432'%3E%3C/svg%3E" class="img-fluid" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/netflix-cobroextra-768x432.jpg"><noscript><img width="768" height="432" src="https://los40.cl/wp-content/uploads/2022/03/netflix-cobroextra-768x432.jpg" class="img-fluid"></noscript>
+						</a>
+					</div>
+					<!-- metapost -->
+					<div class="col-md-5 pink-bg d-flex">
+						<div class="align-self-center py-2 px-2">
+							<a href="https://los40.cl/2022/netflix-implementara-cobro-extra-para-quienes-compartan-su-contrasena-con-personas-que-no-vivan-juntas-110398.html" class="text-white">
+								<h2>Netflix cobrará extra a usuarios que compartan su cuenta con "parásitos"</h2>
+								<h3>El servicio de streaming comenzará a implementar una prueba piloto del sistema en tres países: Chile, Perú y Costa Rica.</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /row post full  -->
+		
+		<!-- row 2 post + ad -->
+		<div class="row">
+			
+			<!--  2 post col -->
+			<div class="col-md-12">
+				<div class="row">
+															
+																																<!-- post col 4 -->
+					<div class="col-md-4  col-6  post-col">
+						
+							<figure>
+								<a href="https://los40.cl/2022/creamfields-chile-2022-estos-son-los-artistas-nacionales-que-se-presentaran-110344.html">
+									 <img width="768" height="432" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%20432'%3E%3C/svg%3E" class="img-fluid" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/creamfields-1-768x432.jpg"><noscript><img width="768" height="432" src="https://los40.cl/wp-content/uploads/2022/03/creamfields-1-768x432.jpg" class="img-fluid"></noscript>
+									<figcaption>
+																		<!-- tag -->
+									<span class="tag-single pink-bg"><h3>Música chilena</h3></span>
+								    									<!-- title -->
+									<h2>Creamfields Chile 2022: Los artistas nacionales que se presentarán</h2>
+									
+									<!-- metapost -->
+									<div class="meta-post d-md-flex d-block">
+										<div><p>Paula Báscoli</p></div>
+										<div class=" ml-auto "><time>16/03/2022</time></div>
+									</div>
+								    
+									</figcaption>
+								</a>
+							</figure>
+						
+					</div>
+										
+																																<!-- post col 4 -->
+					<div class="col-md-4  col-6  post-col">
+						
+							<figure>
+								<a href="https://los40.cl/2022/creamfields-chile-2022-como-y-donde-puedo-comprar-los-tokens-110346.html">
+									 <img width="768" height="432" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%20432'%3E%3C/svg%3E" class="img-fluid" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/Creamfields-768x432.jpg"><noscript><img width="768" height="432" src="https://los40.cl/wp-content/uploads/2022/03/Creamfields-768x432.jpg" class="img-fluid"></noscript>
+									<figcaption>
+																		<!-- tag -->
+									<span class="tag-single pink-bg"><h3>Musica40</h3></span>
+								    									<!-- title -->
+									<h2>Creamfields Chile 2022: ¿Cómo y dónde puedo comprar los tokens?</h2>
+									
+									<!-- metapost -->
+									<div class="meta-post d-md-flex d-block">
+										<div><p>Pascale Quililongo</p></div>
+										<div class=" ml-auto "><time>16/03/2022</time></div>
+									</div>
+								    
+									</figcaption>
+								</a>
+							</figure>
+						
+					</div>
+										
+																																<!-- post col 4 -->
+					<div class="col-md-4  post-col">
+						
+							<figure>
+								<a href="https://los40.cl/2022/bella-hadid-confiesa-que-se-opero-a-los-14-anos-y-se-arrepiente-de-haberlo-hecho-110360.html">
+									 <img width="768" height="432" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%20432'%3E%3C/svg%3E" class="img-fluid" data-lazy-src="https://los40.cl/wp-content/uploads/2022/03/bella-gigi-hadid-768x432.jpg"><noscript><img width="768" height="432" src="https://los40.cl/wp-content/uploads/2022/03/bella-gigi-hadid-768x432.jpg" class="img-fluid"></noscript>
+									<figcaption>
+																		<!-- tag -->
+									<span class="tag-single pink-bg"><h3>40yMás</h3></span>
+								    									<!-- title -->
+									<h2>Bella Hadid confiesa que se operó a los 14 años y se arrepiente de ello</h2>
+									
+									<!-- metapost -->
+									<div class="meta-post d-md-flex d-block">
+										<div><p>Paula Báscoli</p></div>
+										<div class=" ml-auto "><time>16/03/2022</time></div>
+									</div>
+								    
+									</figcaption>
+								</a>
+							</figure>
+						
+					</div>
+										
+														</div>
+			</div>
+			<!--  /2 post col -->
+		</div>
+	</div>
+</div>
+<!-- en portada -->
+
+
+<!-- ldb -->
+<div class="col-md-12 mt-3 text-center mx-auto">
+	<ned-ad ad-name="ad-ldb1" ad-jacent></ned-ad>
+</div>
+<!-- /ldb -->
+
+
+<!-- festifgame -->
+<div class="post-section">
+  
+<div class="container festigame mt-4">
+
+
+  <div class="row">
+     <div class="col-md-5 col-7 mx-auto mt-5 text-center pb-3">
+       <a href="https://festigame.com/" target="_blank" rel="nofollow">
+       <img width="300" height="77" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%2077'%3E%3C/svg%3E" class="img-fluid" data-lazy-src="https://los40.cl/wp-content/uploads/2021/06/LOGO-FG2021-FondoOscuro-Horizontal-min.png" ><noscript><img width="300" height="77" src="https://los40.cl/wp-content/uploads/2021/06/LOGO-FG2021-FondoOscuro-Horizontal-min.png" class="img-fluid" ></noscript>
+       </a>
+     </div>
+  </div>
+
+
+
+  <div class="row owl-carousel owl-theme owl-post-home m-0">
+            <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/hype-blizzard-da-detalles-sobre-su-nuevo-juego-105252.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="¡Hype! Blizzard Da Detalles Sobre Su Nuevo Juego" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-300x169.jpg" class="img-fluid wp-post-image" alt="¡Hype! Blizzard Da Detalles Sobre Su Nuevo Juego" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/¡Hype-Blizzard-da-detalles-sobre-su-nuevo-juego.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                ¡Hype! Blizzard da detalles sobre su nuevo juego              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    26/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/sony-niega-que-haya-incrementado-la-produccion-de-ps4-por-escasez-de-ps5-105037.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Ps4 Ps5" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-300x169.jpg" class="img-fluid wp-post-image" alt="Ps4 Ps5" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/ps4-ps5.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption  class="festigame-bg" >
+              <!-- title -->
+              <h2>
+                Sony niega haber incrementado producción de PS4 por escasez de PS5              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    24/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/bombazo-microsoft-compra-activision-blizzard-104375.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Microsoft Blizzard" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-300x169.jpg" class="img-fluid wp-post-image" alt="Microsoft Blizzard" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/microsoft-blizzard.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                ¡Bombazo! Microsoft compra Activision Blizzard              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    18/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/playstation-los-22-juegos-mas-esperados-de-este-2022-104263.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="PlayStation_ Los 22 Juegos Más Esperados De Este 2022" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-300x169.jpg" class="img-fluid wp-post-image" alt="PlayStation_ Los 22 Juegos Más Esperados De Este 2022" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/PlayStation_-Los-22-juegos-mas-esperados-de-este-2022.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                PlayStation: Los 22 juegos más esperados de este 2022              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    17/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/ratchet-clank-lidera-las-nominaciones-en-los-dice-awards-2022-104056.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="RATCHET &amp; CLANK LIDERA LAS NOMINACIONES EN LOS DICE AWARDS 2022" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-300x169.jpg" class="img-fluid wp-post-image" alt="RATCHET &amp; CLANK LIDERA LAS NOMINACIONES EN LOS DICE AWARDS 2022" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/RATCHET-CLANK-LIDERA-LAS-NOMINACIONES-EN-LOS-DICE-AWARDS-2022.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption  class="festigame-bg" >
+              <!-- title -->
+              <h2>
+                Ratchet &amp; Clank lidera las nominaciones en los DICE Awards 2022              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    14/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/vuelve-el-circuito-daytona-international-speedway-a-gran-turismo-103967.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Festigame 1" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/festigame-1-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/festigame-1-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/festigame-1-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/festigame-1.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/festigame-1-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/festigame-1-300x169.jpg" class="img-fluid wp-post-image" alt="Festigame 1" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/festigame-1-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/festigame-1-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/festigame-1-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/festigame-1.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                Vuelve el circuito Daytona International Speedway a Gran Turismo              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    13/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/sony-aumenta-la-produccion-de-ps4-ante-falta-de-stock-de-ps5-103824.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Ps4 Sony" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/ps4-sony-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/ps4-sony-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/ps4-sony-300x169.jpg" class="img-fluid wp-post-image" alt="Ps4 Sony" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/ps4-sony-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/ps4-sony.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                Sony aumenta la producción de PS4 ante falta de stock de PS5              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    12/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2022/grupo-de-fans-hace-un-remake-de-silent-hill-103677.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="Silent Hill" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2022/01/silent-hill-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/silent-hill-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/silent-hill-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/silent-hill.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2022/01/silent-hill-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2022/01/silent-hill-300x169.jpg" class="img-fluid wp-post-image" alt="Silent Hill" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2022/01/silent-hill-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2022/01/silent-hill-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2022/01/silent-hill-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2022/01/silent-hill.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption  class="festigame-bg" >
+              <!-- title -->
+              <h2>
+                Grupo de fans hace un remake de &quot;Silent Hill&quot;              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    11/01/2022                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  <!-- post col 3 -->
+      <div class="col post-col">
+        
+          <figure>
+            <a href="https://los40.cl/2021/confirman-gta-5-fue-el-juego-mas-visto-en-twitch-durante-este-ano-102308.html">
+              <img width="300" height="169" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20169'%3E%3C/svg%3E" class="img-fluid wp-post-image" alt="GTA 5" loading="lazy" data-lazy-srcset="https://los40.cl/wp-content/uploads/2021/12/GTA-5-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2021/12/GTA-5-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2021/12/GTA-5-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2021/12/GTA-5.jpg 1200w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://los40.cl/wp-content/uploads/2021/12/GTA-5-300x169.jpg" /><noscript><img width="300" height="169" src="https://los40.cl/wp-content/uploads/2021/12/GTA-5-300x169.jpg" class="img-fluid wp-post-image" alt="GTA 5" loading="lazy" srcset="https://los40.cl/wp-content/uploads/2021/12/GTA-5-300x169.jpg 300w, https://los40.cl/wp-content/uploads/2021/12/GTA-5-1024x576.jpg 1024w, https://los40.cl/wp-content/uploads/2021/12/GTA-5-768x432.jpg 768w, https://los40.cl/wp-content/uploads/2021/12/GTA-5.jpg 1200w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>              <figcaption class="festigame-bg2" >
+              <!-- title -->
+              <h2>
+                ¿Confirman? GTA 5 fue el juego más visto en Twitch durante este año              </h2>
+              <!-- metapost -->
+              <div class="meta-post d-md-flex d-block">
+                <div>
+                  <p>
+                                      </p>
+                </div>
+                <div class="ml-auto">
+                  <time>
+                    27/12/2021                  </time>
+                </div>
+              </div>
+              </figcaption>
+            </a>
+          </figure>
+        
+    </div>
+                  </div>
+
+
+</div>
+
+</div>
+<!-- /festigame -->
+
+<!-- outbrain -->
+<div class="post-section">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center section-post-title">
+				<h1 class="pink">Contenido patrocinado</h1>
+			</div>
+		</div>
+
+		<div class="row outbrain">
+			<div class="OUTBRAIN" data-src="https://los40.cl/2022/kiss-anuncia-nuevo-concierto-en-chile-fecha-lugar-y-precio-de-las-entradas-110170.html" data-widget-id="AR_8" data-ob-template="ES_PrisaRadioChile" >
+            </div>
+            <script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" async="async" src="https://los40.cl/wp-content/cache/min/1/outbrain.js?ver=1647526954"></script>
+		</div>
+		
+	</div>
+</div>
+<!--outbrain-->
+
+
+<!--  popular post -->
+<div class="dark-section top-post">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col section-title cyan text-center">
+				<h1>Lo más visto de la semana</h1>
+			</div>
+		</div>
+		<div class="row">
+			
+															<div class="col-md-6">
+				<ol class="list-group list-group-flush">
+										<li class="list-group-item">
+						<a href="https://los40.cl/2022/los40eslolla-gana-entradas-para-lollapalooza-chile-2022-con-los40-109856.html" class="text-white">
+							<span class="number-list">1</span>
+							<span class="cyan text-uppercase">Concursos // </span>
+							CONCURSO CERRADO: Gana entradas para Lollapalooza Chile 2022 con LOS40						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/quien-le-entregara-la-banda-presidencial-a-gabriel-boric-109902.html" class="text-white">
+							<span class="number-list">2</span>
+							<span class="cyan text-uppercase">Agenda40 // </span>
+							¿Quién le entregará la banda presidencial a Gabriel Boric?						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/es-real-el-gif-de-gabriel-boric-dando-una-vuelta-en-el-cambio-de-mando-109926.html" class="text-white">
+							<span class="number-list">3</span>
+							<span class="cyan text-uppercase">40yMás // </span>
+							¿Es real el GIF de Gabriel Boric dando vuelta en el Cambio de Mando?						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/lollapalooza-chile-2022-como-luce-el-parque-bicentenario-de-cerrillos-previo-al-festival-109864.html" class="text-white">
+							<span class="number-list">4</span>
+							<span class="cyan text-uppercase">Musica40 // </span>
+							Lollapalooza Chile 2022: ¿Cómo luce el Parque Bicentenario de Cerrillos?						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/copihue-de-oro-2022-como-votar-por-pagina-40-como-mejor-programa-radial-109793.html" class="text-white">
+							<span class="number-list">5</span>
+							<span class="cyan text-uppercase">Música chilena // </span>
+							Copihue de Oro 2022: Cómo votar por Página 40 en Mejor programa radial						</a>
+					</li>
+					
+									</ol>
+			</div>
+																		<div class="col-md-6">
+				<ol class="list-group list-group-flush">
+										<li class="list-group-item">
+						<a href="https://los40.cl/2022/megan-thee-stallion-ft-dua-lipa-y-luis-fonsi-protagonizan-un-nuevo-viernes-de-estrenos-en-los40-109882.html" class="text-white">
+							<span class="number-list">6</span>
+							<span class="cyan text-uppercase">Musica40 // </span>
+							Megan Thee Stallion ft Dua Lipa y Luis Fonsi protagonizan un nuevo Viernes de Estrenos						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/gabriel-boric-presidente-los-memes-y-reacciones-que-dejo-el-cambio-de-mando-109918.html" class="text-white">
+							<span class="number-list">7</span>
+							<span class="cyan text-uppercase">40yMás // </span>
+							Boric Presidente: Los memes y reacciones que dejó el Cambio de Mando						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/funa-masiva-en-liceo-lastarria-alumnas-aseguran-que-compartian-fotos-intimas-de-ellas-por-whatsapp-109822.html" class="text-white">
+							<span class="number-list">8</span>
+							<span class="cyan text-uppercase">Mirada40 // </span>
+							Funa masiva en Liceo Lastarria: compartían fotos íntimas de alumnas						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/nuevo-logo-gobierno-de-chile-tiene-nueva-imagen-tras-el-cambio-de-mando-109930.html" class="text-white">
+							<span class="number-list">9</span>
+							<span class="cyan text-uppercase">Agenda40 // </span>
+							Gobierno de Chile tiene nuevo logo tras el cambio de mando						</a>
+					</li>
+					
+																						<li class="list-group-item">
+						<a href="https://los40.cl/2022/metro-extension-de-horario-de-10-estaciones-lollapalooza-chile-2022-110018.html" class="text-white">
+							<span class="number-list">10</span>
+							<span class="cyan text-uppercase">40yMás // </span>
+							Metro anunció extensión de horario de estaciones para Lollapalooza Chile 2022						</a>
+					</li>
+					
+									</ol>
+			</div>
+																		
+			
+		</div>
+	</div>
+</div>
+<!--  /popular post -->
+    </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- al aire -->
+<section class="alaire">
+<div class="d-flex justify-content-center">
+	
+	<div class="play">
+		<a href="https://envivo.los40.cl/" rel="noopener noreferrer" target="_blank" class="text-white">
+			<i class="fal fa-play-circle"></i>
+		</a>
+	</div>
+	<div class="ml-2">
+		<a href="https://envivo.los40.cl/" rel="noopener noreferrer" target="_blank" class="text-white">
+			<h4 class="title"><i class="live-icon ml-auto"></i> Ahora al aire</h4>
+			<h3 class="programa" id="programa-alaire-mob"></h3>
+		</a>
+	</div>
+	
+	
+</div>
+</section>
+<!-- /al aire -->
+<footer>
+<!--  iarc footer -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-9 mx-auto text-center">
+			<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20290%20115'%3E%3C/svg%3E" class="img-fluid" width="290" height="115" data-lazy-src="https://los40.cl/wp-content/themes/los40cl/img/los40_dial.svg"><noscript><img src="https://los40.cl/wp-content/themes/los40cl/img/los40_dial.svg" class="img-fluid" width="290" height="115"></noscript>
+		</div>
+	</div>
+	<div class="row rrss-footer mt-4">
+		<ul class="list-inline text-center mx-auto">
+						<li class="list-inline-item">
+				<a href="https://wa.me/56958792865" target="_blank" rel="nofollow" title="Escríbenos por Whatsapp">
+					<i class="fab fa-whatsapp"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://www.instagram.com/los40chile/" target="_blank" rel="nofollow" title="Síguenos en Instagram">
+					<i class="fab fa-instagram"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://open.spotify.com/user/los40oficial" target="_blank" rel="nofollow" title="Síguenos en Spotify">
+					<i class="fab fa-spotify"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://www.tiktok.com/@los40chile" target="_blank" rel="nofollow" title="Síguenos en TikTok">
+					<i class="fab fa-tiktok"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://www.youtube.com/channel/UCdrMBPlRp8mzz1YWO1revxA" target="_blank" rel="nofollow" title="Síguenos en Youtube">
+					<i class="fab fa-youtube"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://twitter.com/40ChileOficial/" target="_blank" rel="nofollow" title="Síguenos en Twitter">
+					<i class="fab fa-twitter"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="https://www.facebook.com/Los40Chile/" target="_blank" rel="nofollow" title="Síguenos en Facebook">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+			</li>
+									<li class="list-inline-item">
+				<a href="mailto:contacto@los40.cl" target="_blank" rel="nofollow" title="Escríbenos a nuestro correo">
+					<i class="fas fa-envelope"></i>
+				</a>
+			</li>
+								</ul>
+	</div>
+	<div class="row mt-4">
+		<div class="container">
+			<div  class="col-md-3 col-8 text-center mx-auto">
+				<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20202%2030'%3E%3C/svg%3E" class="img-fluid" width="202" height="30" data-lazy-src="https://los40.cl/wp-content/themes/los40cl/img/iarc.svg"><noscript><img src="https://los40.cl/wp-content/themes/los40cl/img/iarc.svg" class="img-fluid" width="202" height="30"></noscript>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="container footer-text">
+			<div class="col-md-4 text-center mx-auto">
+				<p>2000 — 2022<br> © Ibero Americana Radio Chile <br> Producción musical Cadena Ser, España 2022. </p>
+				<p class="mt-3">	<p class="text-uppercase"> <a href="https://www.iarc.cl/comercial/" target="_blank" rel="nofollow" class="text-light" style="border: 1px solid #222;padding: 4px;color: #222!important;">Contacto comercial</a></p> <br> Eliodoro Yañez 1783, Providencia, Santiago de Chile.</p>
+				<p>
+					<a href="https://los40.cl/aviso-legal"><span>Aviso legal</span><br>
+					<a href="https://los40.cl/politica-de-privacidad?v=2" target="_blank" rel="nofollow"><span>Política de privacidad</span></a> | <a href="https://los40.cl/politica-de-cookies?v=2" target="_blank" rel="nofollow"><span>Política de Cookies</span></a><br>
+					
+					
+					<!-- <a href="https://api.iarc.dev/images/79fa04ccb66857a6a8f51c866e3615a6.pdf" target="_blank" rel="noopener noreferrer"><span>Valores pautas publicitarias elecciones Nov 2021</span></a> --><br>
+					<a href="#" onclick="Didomi.preferences.show();return false;"><span><i class="fas fa-user-cog"></i> Configuración de Cookies</span></a>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- prisa footer -->
+<div class="d-none d-md-block">
+	<div id="pie-comun9">
+	<div class="inside">
+		<div class="medios-destacados">
+			<a id="pc_prisa" href="https://www.prisa.com/es" target="_blank"  title="Ir a la web del Grupo Prisa">Una empresa de PRISA</a>
+			<a id="pbt-medios" href="javascript:void(0);" title="medios Grupo Prisa">Medios Grupo Prisa</a>
+				
+			<ul class="primerafila estirar">
+				<li><a id="pc_elpais" href="https://elpais.com/" target="_blank"  title="EL PA&Iacute;S">El PA&Iacute;S</a></li>
+                <li><a id="pc_los40" href="https://los40.com" target="_blank"  title="Ir a la web de Los 40">Los 40 principales</a></li>
+                <li><a id="pc_santillana" href="https://www.santillana.com/" target="_blank"  title="Ir a la web de Santillana">Santillana</a></li>
+               
+                <li><a id="pc_compartir" href="https://santillanacompartir.com/" target="_blank"  title="Ir a la web de Santillana Compartir">Santillana Compartir</a></li>
+                <li><a id="pc_tvi" href="https://tvi.iol.pt/" target="_blank"  title="Ir a la web de tvi">tvi</a></li>
+                <li><a id="pc_ser" href="https://cadenaser.com" target="_blank"  title="Ir a la web de Cadena SER">Cadena SER</a></li>
+				<li><a id="pc_as" href="https://as.com/" target="_blank" title="Ir a la web de AS">AS.com</a></li>
+                <li><a id="pc_adn" href="https://www.adnradio.cl" target="_blank"  title="Ir a la web de ADN">adn</a></li>
+                <li><a id="pc_caracol" href="https://caracol.com.co/" target="_blank"  title="Ir a la web de Caracol">Caracol</a></li>
+             </ul>
+			<ul class="estirar">
+				<li><a id="pc_huffington" href="https://www.huffingtonpost.es/" target="_blank" title="Ir a la web de Huffington Post">Huffington Post</a></li>
+				<li><a id="pc_uno" href="https://mx.unoi.com/" target="_blank" title="Ir a la web de Sistema UNO">UNO</a></li>
+                <li><a id="pc_wradio" href="https://wradio.com.mx/" target="_blank"  title="Ir a la web de wradio">wradio</a></li>
+                <li><a id="pc_cincodias" href="https://cincodias.elpais.com/" target="_blank" title="Ir a la web de Cinco D&iacute;as">Cinco D&iacute;as</a> </li>
+                <li><a id="pc_continental" href="https://www.continental.com.ar" target="_blank"  title="Ir a la web de Radio Continental">continental</a></li>
+				<li><a id="pc_maxima" href="https://elpais.com/elpais/eps.html" target="_blank"  title="Ir a la web de EL PA&Iacute;S Semanal">EL PA&Iacute;S Semanal</a></li>
+                <li><a id="pc_m80" href="https://verne.elpais.com/" target="_blank"  title="Ir a la web de Verne">Verne</a></li>
+                <li><a id="pc_dial" href="https://www.cadenadial.com/" target="_blank"  title="Ir a la web de Cadena Dial">Cadena Dial</a></li>
+                <li><a id="pc_kebuena" href="https://play.kebuena.es/" target="_blank"  title="Ir a la web de Kebuena">Kebuena</a></li>
+                <li><a id="pc_podium" href="https://www.podiumpodcast.com/" target="_blank"  title="Ir a la web de Podium Podcast">Podium podcasts</a></li>
+			</ul>
+			
+			<ul class="estirar">
+				<li><a id="pc_richmond" href="https://www.richmondelt.com/" target="_blank"  title="Ir a la web de Richmond">Richmond</a></li>
+				<li><a id="pc_moderna" href="https://www.moderna.com.br/pagina-inicial.htm" target="_blank"  title="Ir a la web de Moderna">Moderna</a></li>
+                <li><a id="pc_plural" href="https://pluralportugal.pt/" target="_blank"  title="Ir a la web de plural">Plural</a></li>  
+                <li><a id="pc_tvi24" href="https://tvi24.iol.pt/" target="_blank"  title="Ir a la web de tvi">tvi24</a></li>
+                <li><a id="pc_icon" href="https://elpais.com/elpais/icon.html" target="_blank"  title="Ir a la web de El Pa&Iacute;s ICON">El Pa&Iacute;s ICON</a></li>
+				<li><a id="pc_verne" href="https://smoda.elpais.com/" target="_blank"  title="Ir a la web de S moda">S moda</a></li>
+                <li><a id="pc_loqueleo" href="https://www.loqueleo.com/" target="_blank"  title="Ir a la web de loqueleo">loqueleo</a></li>
+				<li><a id="pc_meristation" href="https://as.com/meristation/" target="_blank"  title="Ir a la web de Meristation">Meristation</a></li>
+                <li><a id="pc_elviajero" href="https://elpais.com/elpais/planeta_futuro.html" target="_blank"  title="Ir a la web de Planeta futuro">Planeta futuro</a></li>
+                <li><a id="pc_clasificados" href="https://radiocomercial.iol.pt/" target="_blank"  title="Ir a la web de R&aacute;dio Comercial">R&aacute;dio Comercial</a>
+			</ul>
+		</div><!-- /medios-destacados -->
+		
+		<div id="capa-webs-grupo" class="muestra-medios"> <!-- activado / desactivado -->
+			<div class="capa-medios">	
+				<div class="cabecera-capa estirar">
+					<h3>Webs de PRISA</h3>
+					<a href="javascript:void(0);" title="cerrar" id="cierrame">cerrar ventana</a>
+				</div><!-- /cabecera-capa -->
+				<iframe loading="lazy" src="about:blank" width="993" height="281" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" data-rocket-lazyload="fitvidscompatible" data-lazy-src="https://www.prisacom.com/comunes/piecomun-v9/i-pie-comun-enlaces.html"></iframe><noscript><iframe src="https://www.prisacom.com/comunes/piecomun-v9/i-pie-comun-enlaces.html" width="993" height="281" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></noscript>				
+				<div class="pc-sombreado">
+					<a href="javascript:void(0);" id="cierrame2">cerrar</a>
+				</div><!-- /pc-sombreado -->
+			</div><!-- /capa-medios -->
+		</div><!-- /muestra-medios -->
+		
+	</div><!-- /inside -->
+</div><!-- /pie-comun3 --></div>
+</footer>
+<!-- itunes moodal -->
+<div class="modal fade" id="itunes-modal" tabindex="-1" role="dialog" aria-labelledby="itunes-modalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content pink-bg">
+		
+		<div class="modal-body">
+			<!-- Card -->
+			<div class="card pink bg-los40">
+				<!-- Card image -->
+				<div class="view">
+					<img class="card-img-top" src="" id="cover-modal">
+				</div>
+				<!-- Card content -->
+				<div class="card-body text-center">
+					<h4 class="h5 font-weight-bold text-uppercase m-0 font-italic" id="nombre-cancion"></h4>
+					<h5 class="mb-2 text-uppercase" id="nombre-artista"></h5>
+					<audio class="itunes-audio" preload="true" controls="" id="">
+						<source src="">
+					</audio>
+					
+				</div>
+			</div>
+			<!-- Card -->
+		</div>
+		
+	</div>
+</div>
+</div>
+<!-- /itunes moodal -->
+<!-- modal search -->
+<div class="modal fade m-search" id="ModalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-content rounded-0 pr-3">
+		<div class="modal-body">
+			
+			<form method="get" action="https://los40.cl/" role="search">
+				<div class="form-row align-items-center">
+					<div class="col-8 col-md-10">
+						<label class="sr-only" for="inlineFormInputGroup"></label>
+						<div class="input-group mb-2">
+							<input type="text" name="s"  class="form-control rounded-0" id="inlineFormInputGroup" placeholder="..." value="">
+						</div>
+					</div>
+					<div class="col-4 col-md-2">
+						<button type="submit" class="btn btn-primary mb-2 search-button rounded-0 text-uppercase orange-bg">Buscar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<!-- /modal search -->
+<div id="publi_los40_web_cl-INTER"></div>
+<div id="publi_los40_mob_cl-MINTER"></div>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/fbia|\/rss-podcast-ultravioleta|\/rss-los-cuentos-del-pececillo|\/xml-orgullosos|\/2021\/concurso-gana-una-prenda-a-eleccion-de-la-nueva-coleccion-de-levis-x-pokemon-71817.html|\/mujeresquenosinspiran2022|\/mujeresquenosinspiran|\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin|\/logout|\/wp-login.php|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/los40.cl","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type='text/javascript' src='https://los40.cl/wp-content/themes/los40cl/js/theme.min.js?ver=23.7.9.1584042094' id='reset-scripts-js'></script>
+<script data-minify="1" type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/single.js?ver=1647526954' id='single-scripts-js'></script>
+<script data-minify="1" type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/menu.js?ver=1647526950' id='menu-scripts-js'></script>
+<script data-minify="1" type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/home.js?ver=1647526950' id='home-scripts-js'></script>
+<script data-minify="1" type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/envivo.js?ver=1647526950' id='live-scripts-js'></script>
+<script data-minify="1" type='text/javascript' src='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/js/stream.js?ver=1647526950' id='stream-scripts-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://los40.cl/wp-includes/js/comment-reply.min.js?ver=5.9.2' id='comment-reply-js' defer></script>
+<script type='text/javascript' src='https://cdn.onesignal.com/sdks/OneSignalSDK.js?ver=5.9.2' async='async' id='remote_sdk-js'></script>
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://los40.cl/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script><script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+	var section ='noticias';
+	var subsection ='';
+	var type ='musica-40';
+		    var title = 'Kiss anuncia nuevo concierto en Chile: Fecha, lugar y precio de las entradas';
+		
+</script>
+
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="init-read">
+ var ttt_window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+ if (ttt_window_width <= 600) {
+var initArticles = function() {
+    var $button = jQuery('.js-remove-article-height');
+
+    $button.on('click', function(e) {
+    	console.log('init read click');
+        e.preventDefault();
+
+        var $this    = jQuery(this);
+        var $parent  = $this.parents('.single-content');
+        var $wrapper = $parent.find('.reading-single');
+        var $modal   = $parent.find('.reading-button');
+
+        $wrapper.addClass('is-full-visible');
+        $modal.remove();
+    });
+};
+
+initArticles();
+}
+</script>
+
+
+
+
+<script type="rocketlazyloadscript">"use strict";function wprRemoveCPCSS(){var preload_stylesheets=document.querySelectorAll('link[data-rocket-async="style"][rel="preload"]');if(preload_stylesheets&&0<preload_stylesheets.length)for(var stylesheet_index=0;stylesheet_index<preload_stylesheets.length;stylesheet_index++){var media=preload_stylesheets[stylesheet_index].getAttribute("media")||"all";if(window.matchMedia(media).matches)return void setTimeout(wprRemoveCPCSS,200)}var elem=document.getElementById("rocket-critical-css");elem&&"remove"in elem&&elem.remove()}window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><noscript><link data-minify="1" rel='stylesheet' id='reset-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/theme.min.css?ver=1647526949' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='galano-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/fonts/galano/stylesheet.css?ver=1647526949' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='lolla-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/fonts/lolla/stylesheet.css?ver=1647526949' type='text/css' media='all' /><link rel='stylesheet' id='owl-styles-css'  href='https://los40.cl/wp-content/themes/los40cl/vendor/owl/2.3.4/dist/assets/owl.carousel.min.css?ver=23.7.9.1647526930' type='text/css' media='all' /><link rel='stylesheet' id='owltheme-styles-css'  href='https://los40.cl/wp-content/themes/los40cl/vendor/owl/2.3.4/dist/assets/owl.theme.default.min.css?ver=23.7.9.1647526930' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='prisa-styles-css'  href='https://los40.cl/wp-content/cache/min/1/comunes/piecomun-v9/css/pie-comunes.css?ver=1647526949' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='main-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/main.css?ver=1647526949' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='menu-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/menu.css?ver=1647526949' type='text/css' media='all' /><link data-minify="1" rel='stylesheet' id='single-styles-css'  href='https://los40.cl/wp-content/cache/min/1/wp-content/themes/los40cl/css/single.css?ver=1647526954' type='text/css' media='all' /></noscript></body>
+</html>
+<!-- Cached for great performance - Debug: cached@1647536558 -->
