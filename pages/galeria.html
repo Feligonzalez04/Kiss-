@@ -6,33 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Multimedia/Kiss.webp">
-    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/mediaQueries.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">">
 </head>
 <body class="galeria">
     <header> 
-        <nav> 
-            <ul> 
-                <li><a href="../index.html">inicio</a></li> 
-                <li><a href="conciertos.html">conciertos</a></li>
-                <li><a href="discografia.html">discografia</a></li>
-                <li><a href="galeria.html">galeria</a></li>
-                <li><a href="contacto.html">contacto</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <img src="../multimedia/logo.png" alt="logo" width="150px">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-link" href="../index.html">inicio</a>
+                <a class="nav-link" aria-current="" href="galeria.html">galeria</a>
+                <a class="nav-link" href="discografia.html">discografia</a>
+                <a class="nav-link" href="conciertos.html">conciertos</a>
+                <a class="nav-link" href="contacto.html">contacto</a>
+                </div>
+            </div>
+            </div>
         </nav>
-    </header> 
+    </header>
     <article> 
-            <section>
-                <img src="../Multimedia/65FBPHVEZFE2FENY74OWIIQYQQ.jpg" alt="kiss" width="400px">        
-                <img src="../Multimedia/Plantilla_para_fotos_de_portada_.jpg" alt="kiss" width="600px">
-                <img src="../Multimedia/trio.jpg" alt="kiss" width="500px">
-                <img src="../Multimedia/attachment-kiss.jpg" alt="kiss" width="500px">
-            </section>
+            <ul class="galeria">
+                <li><a href="#img1"><img src="../Multimedia/65FBPHVEZFE2FENY74OWIIQYQQ.jpg" width="400px"></a></li>
+                <li><a href="#img2"><img src="../Multimedia/Plantilla_para_fotos_de_portada_.jpg" width="600px"></a></li>
+                <li><a href="#img3"><img src="../Multimedia/trio.jpg" width="500px"></a></li>
+                <li><a href="#img4"> <img src="../Multimedia/attachment-kiss.jpg" width="500px"></a></li>
+            </ul>
+            <div class="modal" id="img1">
+                <h3>foto 1</h3>
+                <div class="imagen">
+                    <a href="#img4">&#60;</a>
+                    <a href="#img2"><img src="../Multimedia/Plantilla_para_fotos_de_portada_.jpg"></a>
+                    <a href="#img2">></a>
+                    <a href="#img2"></a>
+                </div>
+                <a class="cerrar" href="">X</a>
+
+            </div>
+
+            <div class="modal" id="img2">
+                <h3>foto 2</h3>
+                <div class="imagen">
+                    <a href="#img1">&#60;</a>
+                    <a href="#img3"><img src="../Multimedia/trio.jpg"></a>
+                    <a href="#img3">></a>
+                    <a href=""></a>
+                </div>
+                <a class="cerrar" href="">X</a>
+
+            </div> 
+
+            <div class="modal" id="img3">
+                <h3>foto 3</h3>
+                <div class="imagen">
+                    <a href="#img2">&#60;</a>
+                    <a href="#img4"><img src="../Multimedia/attachment-kiss.jpg"></a>
+                    <a href="#img4">></a>
+                    <a href=""></a>
+                </div>
+                <a class="cerrar" href="">X</a>
+
+            </div>
+
+            <div class="modal" id="img4">
+                <h3>foto 4</h3>
+                <div class="imagen">
+                    <a href="#img3">&#60;</a>
+                    <a href="#img1"><img src="../Multimedia/65FBPHVEZFE2FENY74OWIIQYQQ.jpg"></a>
+                    <a href="#img1">></a>
+                    <a href=""></a>
+                </div>
+                <a class="cerrar" href="">X</a>
+
+            </div>
+
     </article>   
-    <footer> 
-        <a href="https://www.instagram.com/kissonline/?hl=es">instagram</a>
-        <a href="https://es-la.facebook.com/KISS ">facebook</a>
-        <a href="https://open.spotify.com/artist/07XSN3sPlIlB2L2XNcTwJw?si=0BTAGQCOQZW6L7MQPVdfog ">spotify</a>
+    <footer class="kiss">
+        <a target="_blank" href="https://www.facebook.com/KISS"><i class="fa-brands fa-facebook-f"></i></a>
+        <a target="_blank" href="https://www.instagram.com/kissonline/?hl=es"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://open.spotify.com/artist/07XSN3sPlIlB2L2XNcTwJw" target="blank"><i class="fa-brands fa-spotify"></i></a>
     </footer>
+
+    <script src="js/bootstrap.min.js"></script>
+    
     
 </body>
 </html>
