@@ -238,3 +238,20 @@ margin: 2px;
     justify-content: center;
 }
 
+.info-content1 h2 {
+    color: black;
+    margin: 0%;
+    padding: 0%;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.navbar{
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    align-items: center; 
+} 
+
+.navlink {
+    background-color:black ;
+}
