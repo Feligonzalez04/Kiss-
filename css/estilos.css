@@ -74,7 +74,6 @@ list-style: none;
 } 
 
 .hero-concierto{
-    background-image: url(../Multimedia/1645665870915-null-1920x720-tickets-a-la-venta-1.png);
     height: 100vh;
 }
 
@@ -114,23 +113,43 @@ textarea {
     background-color: white;
 } 
 
+.kissconciertos {
+    height: 10px;
+    width: 100px;
+}
+
+.hero-concierto h4 {
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    flex-wrap: nowrap;
+}
+
+.kisscuatro {
+    color: #fff;
+    align-self: center;
+}
+
+.hero-concierto {
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 300px;
+}
+
+
 @media (max-width:480px) {
     form{
         width: 100%;
     }
-}
+} 
 
 .contacto {
     background-image: url(../Multimedia/trio.jpg);
     background-size: cover ;
     background-attachment: fixed;
     margin: 0%;
-}
-
-@media (max-width:480px) {
-    form{
-        width: 100px;
-    }
 }
 
 
@@ -255,4 +274,32 @@ margin: 2px;
 .navlink {
     background-color:black ;
 }
+
+.kissconciertos {
+    height: 100px;
+    width: 100px;
+}
+
+.hero-concierto h3 {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #fff;
+    text-align: center;
+    flex-wrap: nowrap;
+}
+
+.hero-concierto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 300px;
+}
+
+.conciertos {
+    background-color: black;
+}
+
 

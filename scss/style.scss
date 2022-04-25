@@ -8,7 +8,7 @@
 }
 
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .navbar{
@@ -59,7 +59,7 @@ list-style: none;
 }
 
 .hero h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.3em;
     font-weight: 100px;
 } 
@@ -74,7 +74,10 @@ list-style: none;
 } 
 
 .hero-concierto{
-    background-image: url(../Multimedia/1645665870915-null-1920x720-tickets-a-la-venta-1.png);
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    background-size: cover;
     height: 100vh;
 }
 
@@ -114,9 +117,16 @@ textarea {
     background-color: white;
 } 
 
-@media (max-width:480px) {
+@media screen and (max-width:480px) {
     form{
+        font-family: 'Times New Roman', Times, serif;
         width: 100%;
+        margin: auto;
+        background-color: rgba(0,0,0,0.4);
+        padding: 10px 20px;
+        box-sizing: border-box;
+        margin-top: 20px;
+        border-radius: 7px;
     }
 }
 
@@ -127,9 +137,9 @@ textarea {
     margin: 0%;
 }
 
-@media (max-width:480px) {
+@media screen and (max-width:480px) {
     form{
-        width: 100px;
+        width: 100%;
     }
 }
 
@@ -239,6 +249,8 @@ margin: 2px;
 }
 
 .info-content1 h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
     color: black;
     margin: 0%;
     padding: 0%;
@@ -254,4 +266,14 @@ margin: 2px;
 
 .navlink {
     background-color:black ;
+}
+
+.discografia {
+background-color: #000;
+}
+
+.hero-concierto h3 {
+    align-items: center;
+    justify-content: center;
+    
 }
