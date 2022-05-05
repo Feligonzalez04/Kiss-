@@ -263,7 +263,7 @@ margin: 2px;
 }
 
 .kiss {
-    background-color:black;
+    background-color: #000;
     height: 50px;
     padding-bottom: 0%;
 }
@@ -285,7 +285,7 @@ margin: 2px;
     h2{
         font-family: 'Times New Roman', Times, serif;
     font-size: 30px;
-    color: white;
+    color: #fff;
     margin: 0%;
     padding: 0%;
     grid-template-columns: repeat(10, 1fr);
@@ -337,3 +337,43 @@ background-color: #000;
     flex-direction: row;
 }
 
+$headings:(
+    h1: 4em,
+    h2: 3em,
+    h3: 2em,
+    h4: 1em,
+    h5: 0.75em,
+    h6: 0.35em,
+);
+
+$redes:(
+    facebook:blue,
+    instagram:violet,
+    spotify:green,
+); 
+
+
+.fa-brands.fa-facebook{
+    color: map-get($map: $redes , $key:facebook );
+}
+
+// // footer{ 
+//     a{
+//         background-color: map-get($map: $redes, $key: facebook);
+//     }
+// // }
+
+@mixin h1{
+    text-align: center;
+    background-color: #fff;
+}
+
+.hero .info-content{
+    grid-column: 2/3;
+    grid-row: 3/7;
+    color: #fff;
+}
+
+.info-content1{ 
+    @extend .info-content
+}

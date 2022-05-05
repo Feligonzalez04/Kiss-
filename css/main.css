@@ -42,7 +42,7 @@ body {
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr); }
 
-.hero .info-content {
+.hero .info-content, .hero .info-content1 {
   grid-column: 2/3;
   grid-row: 3/7;
   color: #fff; }
@@ -55,7 +55,7 @@ body {
 .hero h1 {
   font-size: 3em; }
 
-.hero .info-content {
+.hero .info-content, .hero .info-content1 {
   grid-column: 2 / 10;
   grid-row: 4 / 8; }
 
@@ -195,7 +195,7 @@ textarea {
   background-size: cover; }
 
 .kiss {
-  background-color: black;
+  background-color: #000;
   height: 50px;
   padding-bottom: 0%; }
 
@@ -214,7 +214,7 @@ textarea {
 .info-content1 h2 {
   font-family: 'Times New Roman', Times, serif;
   font-size: 30px;
-  color: white;
+  color: #fff;
   margin: 0%;
   padding: 0%;
   grid-template-columns: repeat(10, 1fr); }
@@ -253,3 +253,11 @@ textarea {
 .kisscuatro {
   color: #fff;
   flex-direction: row; }
+
+.fa-brands.fa-facebook {
+  color: blue; }
+
+.hero .info-content, .hero .info-content1 {
+  grid-column: 2/3;
+  grid-row: 3/7;
+  color: #fff; }
