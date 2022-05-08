@@ -14,8 +14,8 @@ body {
   align-items: center; }
 
 .navbar .logo {
-  width: 80px;
-  grid-column: 2/3;
+  width: 60px;
+  grid-column: 2/4;
   margin: 10px 0; }
 
 .navbar .menu {
@@ -35,7 +35,7 @@ body {
 /* section main */
 .hero {
   height: 80vh;
-  background-image: linear-gradient(rgba(16, 16, 16, 0.8), rgba(16, 16, 16, 0.8)), url(../Multimedia/4.webp);
+  background-image: linear-gradient(rgba(16, 16, 16, 0.8), rgba(16, 16, 16, 0.8)), url(../multimedia/kissfondo.webp);
   background-size: cover;
   max-width: 100%;
   display: grid;
@@ -112,7 +112,7 @@ textarea {
     border-radius: 7px; } }
 
 .contacto {
-  background-image: url(../Multimedia/trio.jpg);
+  background-image: url(../Multimedia/kissfondo1.jpg);
   background-size: cover;
   background-attachment: fixed;
   margin: 0%; }
@@ -122,7 +122,8 @@ textarea {
     width: 100%; } }
 
 .galeria li {
-  margin: 2px; }
+  margin: 0px;
+  height: 100px; }
 
 .galeria img {
   width: 200px;
@@ -168,7 +169,7 @@ textarea {
   flex-shrink: 2; }
 
 .imagen img {
-  width: 500px;
+  width: 100%;
   height: 100%;
   max-width: 100%;
   border: 7px solid #fff;
@@ -191,24 +192,19 @@ textarea {
 .galeria {
   background-color: white;
   background-attachment: fixed;
-  background-image: url(../multimedia/4.webp);
+  background-image: url(../multimedia/kissfondo.webp);
   background-size: cover; }
 
 .kiss {
   background-color: #000;
   height: 50px;
-  padding-bottom: 0%; }
+  padding-bottom: 0%;
+  display: flex;
+  justify-content: center;
+  gap: 5px; }
 
 .fa-brands {
-  display: flex;
-  position: relative;
-  left: 700px;
   color: #fff;
-  height: 100px;
-  position: relative;
-  padding: 10px 0;
-  margin: 10px 0;
-  align-items: center;
   justify-content: center; }
 
 .info-content1 h2 {
@@ -245,7 +241,9 @@ textarea {
 
 .kisscinco {
   color: white;
-  flex-direction: row; }
+  flex-direction: row;
+  padding-top: 80px;
+  overflow: scroll; }
 
 .conciertos {
   background-color: #000; }
@@ -260,4 +258,7 @@ textarea {
 .hero .info-content, .hero .info-content1 {
   grid-column: 2/3;
   grid-row: 3/7;
+  color: #fff; }
+
+form h3 {
   color: #fff; }
