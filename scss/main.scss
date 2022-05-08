@@ -363,12 +363,14 @@ $redes:(
 
 @mixin titulos ($fz, $color){
     font-size: $fz;
-    color: $color;
+    color: $color
 } 
 
-.mixing1 (
+.mixing1{
     @include titulos (2rem, #fff) 
-)
+}
+    
+
 
 
 .hero .info-content{
