@@ -104,13 +104,14 @@ body{
 }
 
 form {
-    width: 450px;
+    width: 320px;
     margin: auto;
     background-color: rgba(0,0,0,0.4);
     padding: 10px 20px;
     box-sizing: border-box;
     margin-top: 20px;
     border-radius: 7px;
+    padding-top: 40px;
 }
 
 input,textarea{
@@ -119,7 +120,7 @@ input,textarea{
     padding: 7px;
     box-sizing: border-box;
     font-size: 17px;
-    border: none;
+    
 }
 
 textarea {
@@ -148,7 +149,11 @@ textarea {
     background-color: white;
 } 
 
-@media screen and (max-width:480px) {
+.imgdeconcierto{
+    width: 100%;
+}
+
+@media screen and (min-width:480px) {
     form{
         font-family: 'Times New Roman', Times, serif;
         width: 100%;
@@ -156,10 +161,16 @@ textarea {
         background-color: rgba(0,0,0,0.4);
         padding: 10px 20px;
         box-sizing: border-box;
-        margin-top: 20px;
+        padding-top: 90px;
         border-radius: 7px;
     }
+    .imgdeconcierto{
+        width: 500px;
+        justify-self: center;
+    }
 }
+
+
 
 .contacto {
     background-image: url(../multimedia/kissfondo1.jpg);
@@ -167,29 +178,27 @@ textarea {
     background-attachment: fixed;
     margin: 0%;
 }
-
-@media screen and (max-width:480px) {
+/* @media screen and (max-width:480px) {
     form{
         width: 100%;
     }
-}
+}  */
 
 
-.galeria li {
+/* .galeria li {
     margin: 0px; 
     height: 100px;
-}
-.galeria{
+} */
+/* .galeria{
     
     img{
     width: 200px;
-    height: 100px;
     display: flex;
     justify-content: center;
     display: inline;
     
     }
-}
+} */
 
 .modal {
     display: none;
@@ -241,7 +250,6 @@ textarea {
 .imagen{
     img{
         width: 100%;
-        height: 100%;
         max-width: 100%;
         border: 7px solid #fff;
         box-sizing: border-box;
@@ -263,23 +271,27 @@ textarea {
 }
 
 .galeria {
-    background-color: white;
+    background-color: grey;
     background-attachment: fixed; 
-    background-image: url(../multimedia/kissfondo.webp);
     background-size: cover;
 }
 
 .kiss {
-    background-color: #000;
-    height: 50px;
+    background-color: #fff;
+    height: 100px;
     padding-bottom: 0%;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 5px;
 }
 
+h4 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .fa-brands {
-    color: #fff;
+    color: #000;
     justify-content: center;
 }
 
@@ -338,6 +350,9 @@ background-color: #000;
 .kisscuatro{
     color: #fff;
     flex-direction: row;
+    padding-top: 80px;
+    position: relative;
+    top: 40px;
 }
 
 $headings:(
@@ -408,4 +423,104 @@ form h3{
     color: red;
 }
 
+.imagen-uno{
+    width: 300px;
+    padding-left: 12px;
+}
+.imagen-dos{
+    width: 145px;
+    height: 145px;
+    padding-left: 12px;
+    padding-top: 5px;
+}
+.imagen-tres{
+    width: 145px;
+    padding-left: 12px;
+    padding-top: 5px;
+}
+.imagen-cuatro{
+    width: 165px;
+    height: 165px;
+    padding-left: 12px;
+    padding-top: 5px;
+}
+.imagen-cinco{
+    width: 145px;
+    height: 145px;
+    padding-left: 12px;
+    padding-top: 5px;
+} 
 
+@media screen and (min-width: 1200px){
+    .imagen-uno{
+        width: 450px;
+        }
+        .imagen-dos{
+        width: 300px;
+        height: 300px;
+        }
+        .imagen-tres{
+            width: 260px;
+            height: 300px;
+        }
+        .imagen-cuatro{
+            width: 260px;
+            height: 250px;
+            padding-top: 10px;
+        }
+        .imagen-cinco{
+            width: 290px;
+            height: 260px;
+            padding-top: 10px;
+        }
+        .imgdeconcierto{
+            width: 100%;
+        }
+}
+
+@media screen and (min-width: 1000px){
+    form{
+        font-family: 'Times New Roman', Times, serif;
+        width: 100%;
+        margin: auto;
+        background-color: rgba(0,0,0,0.4);
+        padding: 10px 20px;
+        box-sizing: border-box;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        border-radius: 7px;
+    }
+    .imgdeconcierto{
+        width: 800px;
+    }
+    .kissconcierto{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-evenly;
+        
+    }
+
+    .imagen-uno{
+        width: 430px;
+        }
+        .imagen-dos{
+        width: 280px;
+        height: 280px;
+        }
+        .imagen-tres{
+            width: 230px;
+            height: 280px;
+        }
+        .imagen-cuatro{
+            width: 230px;
+            height: 230px;
+            padding-top: 10px;
+        }
+        .imagen-cinco{
+            width: 270px;
+            height: 230px;
+            padding-top: 10px;
+        }
+}
