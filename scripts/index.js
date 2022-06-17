@@ -1,9 +1,9 @@
-function nombreUsuario(cualquierNombre){
-    var cualquierNombre;
-    alert(cualquierNombre);
+function nombreUsuario() {
+    let nombreIngresado = prompt("Ingrese su nombre: ");
+    alert("Nombre ingresado : " + nombreIngresado);
 }
 
-let nombreUsuario = prompt("ingresar un nombre de usuario para realizar una consulta médica");
+let ingreseNombre = prompt("ingresar un nombre de usuario para realizar una consulta médica");
 
 if (nombreUsuario == "") {
     alert("no ingresaste ningun nombre de usuario");
@@ -28,7 +28,7 @@ else (consultaPrecio >= 150.5); {
 } 
 
 let respuestaAutomática = prompt("desea hablar con un robot automatico que le dara su respuesta a todo?");
-if (nombreUsuario == "si") {
+if (respuestaAutomática == "si") {
     alert("dirigiendote con un robot automatico")
 }
 
@@ -48,14 +48,24 @@ if (problemaQueposee == "rotura" ){
 
 var finalizarConsulta= prompt("desea finalizar su consulta?");
 
-if (nombreUsuario === "no"){
+if (finalizarConsulta === "no"){
     alert("diganos mas consultas")
 }
 
-else if (nombreUsuario === "si"){
+else if (finalizarConsulta === "si"){
     alert("esperemos que le haya servido nuestras respuestas, que se mejore ! ")
     alert("finalizando chat con el robot automatico")
 }
+
+let contUsuario = prompt("deje un numero del 1 al 10, de cuanto esta satisfecho acerca de nuestra consulta")
+let cont =1;
+while(cont <=10){
+    document.write(cont + " ");
+    cont++;
+}
+
+
+
 
 
 
